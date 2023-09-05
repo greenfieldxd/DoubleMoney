@@ -12,8 +12,20 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
-        // Example (I use public fields for data, but u free to use properties\methods etc)
-        // [BoxGroup("level")] public int level;
-        // [BoxGroup("currency")] public int money;
+        public int winsCount;
+        
+        [SerializeField] private int money;
+        public event Action OnMoneyChanged;
+        public int Money
+        {
+            get => money;
+            set
+            {
+                var delta = Mathf.Abs(money - value);
+                money = Mathf.Clamp(value,0,999999999);
+                
+                if (delta>0) OnMoneyChanged?.Invoke();
+            }
+        }
     }
 }

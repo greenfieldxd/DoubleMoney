@@ -7,7 +7,7 @@ namespace Source.Scripts.Extensions
 {
     public static class AnimationExtension
     {
-        private const float JumpPower = 3.3f;
+        private const float JumpPower = 0.5f;
         private const float PunchDuration = 0.1f;
         private const float DefaultDuration = 0.45f;
 
@@ -45,14 +45,29 @@ namespace Source.Scripts.Extensions
             anim.AppendCallback(() => onComplete?.Invoke());
         }
 
-        public static void JumpAnim(Transform item, Transform parent, Vector3 pos, float scaleValue, Vector3 rotation, float duration = DefaultDuration, Action onComplete = null)
+        public static void JumpAnim(Transform item, Transform parent, Vector3 localPos, float scaleValue, Vector3 rotation, float duration = DefaultDuration, Action onComplete = null)
         {
             var anim = DOTween.Sequence();
 
             DOTween.Kill(item);
             item.SetParent(parent);
             
-            anim.Append(item.DOLocalJump(pos, JumpPower, 1, duration));
+            anim.Append(item.DOLocalJump(localPos, JumpPower, 1, duration));
+            anim.Join(item.DOScale(scaleValue, duration));
+            anim.Join(item.DOLocalRotate(rotation, duration));
+            anim.OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
+        }
+        
+        public static void JumpAnim(Transform item, Vector3 pos, float scaleValue, Vector3 rotation, float duration = DefaultDuration, Action onComplete = null)
+        {
+            var anim = DOTween.Sequence();
+
+            DOTween.Kill(item);
+            
+            anim.Append(item.DOJump(pos, JumpPower, 1, duration));
             anim.Join(item.DOScale(scaleValue, duration));
             anim.Join(item.DOLocalRotate(rotation, duration));
             anim.OnComplete(() =>

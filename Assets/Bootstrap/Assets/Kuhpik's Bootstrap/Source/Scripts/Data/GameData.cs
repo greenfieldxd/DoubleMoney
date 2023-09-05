@@ -3,6 +3,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Source.Scripts.Components;
 using Source.Scripts.ScriptableObjects;
 
 namespace Kuhpik
@@ -12,7 +13,10 @@ namespace Kuhpik
     /// </summary>
     [Serializable]
     public class GameData
-    {  
+    {
+        public TableComponent table;
+        public List<CardComponent> cards = new List<CardComponent>();
+        
         //Configs
         public List<CardConfig> cardConfigs = new List<CardConfig>();
     }

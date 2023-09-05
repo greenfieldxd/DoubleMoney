@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Kuhpik;
+using Source.Scripts.Components;
 using Source.Scripts.ScriptableObjects;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Source.Scripts.Systems.Loading
         public override void OnInit()
         {
             game.cardConfigs = cardConfigs;
+
+            game.table = FindObjectOfType<TableComponent>();
         }
     }
 }
