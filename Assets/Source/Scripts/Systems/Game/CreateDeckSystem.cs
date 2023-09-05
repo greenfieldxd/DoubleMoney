@@ -63,12 +63,11 @@ namespace Source.Scripts.Systems.Game
                 if (game.cards.Count > 0)
                 {
                     var card = game.cards.Pop();
-                    AnimationExtension.MoveAnim(card.transform, boardPositionComponent.transform, Vector3.zero, 1f,
-                        Vector3.zero);
+                    AnimationExtension.JumpAnim(card.transform, boardPositionComponent.transform, Vector3.zero, 1f, Vector3.zero);
                 }
                 else yield break;
 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
     }
