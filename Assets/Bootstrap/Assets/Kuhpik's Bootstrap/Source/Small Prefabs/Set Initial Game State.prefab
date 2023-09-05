@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useArray: 1
   firstGameState: 0
-  gameStatesOrder: 0000000001000000
+  gameStatesOrder: 000000000100000002000000

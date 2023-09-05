@@ -3,6 +3,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Source.Scripts.ScriptableObjects;
 
 namespace Kuhpik
 {
@@ -11,9 +12,8 @@ namespace Kuhpik
     /// </summary>
     [Serializable]
     public class GameData
-    {
-        // Example (I use public fields for data, but u free to use properties\methods etc)
-        // public float LevelProgress;
-        // public Enemy[] Enemies;
+    {  
+        //Configs
+        public List<CardConfig> cardConfigs = new List<CardConfig>();
     }
 }
