@@ -16,7 +16,7 @@ namespace Kuhpik.Framework.Tests
                 var state = Bootstrap.Instance.GetCurrentGamestateID();
                 Debug.Log($"State: {state}. {system.GetType().FullName} calls method: {msg}");
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 Debug.Log($"{ system.GetType().FullName } calls method: { msg }");
             }

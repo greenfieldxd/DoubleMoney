@@ -15,7 +15,7 @@ namespace Kuhpik
     public class GameData
     {
         public TableComponent table;
-        public List<CardComponent> cards = new List<CardComponent>();
+        public Stack<CardComponent> cards = new Stack<CardComponent>();
         
         //Configs
         public List<CardConfig> cardConfigs = new List<CardConfig>();

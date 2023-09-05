@@ -12,7 +12,9 @@ namespace Source.Scripts.Components
 
         public void Init(CardConfig config)
         {
-            
+            text.text = config.GetCardText();
+            text.color = config.CardColor;
+            meshColor.material.color = config.CardColor;
         }
     }
 }

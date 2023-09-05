@@ -17,36 +17,58 @@ namespace Source.Scripts.Systems.Game
         [SerializeField] private float yCardOffset = 0.01f;
 
         private float _yCardPos;
-        
+
         public override void OnInit()
         {
             StartCoroutine(CreateDeck());
         }
 
+        public override void OnUpdate()
+        {
+        }
+
         private IEnumerator CreateDeck()
         {
             var count = 0;
-            
-            foreach (CardType type in Enum.GetValues(typeof(CardType)))
+
+            var configs = game.cardConfigs.Where(x => player.winsCount >= x.UnlockAfterWinsCount).ToArray();
+            var rng = new Random();
+            rng.Shuffle(configs);
+
+            foreach (var cardConfig in configs)
             {
                 if (count >= deckSize) yield break;
 
-                var cardConfigs = game.cardConfigs.Where(x => x.CardType == type && player.winsCount >= x.UnlockAfterWinsCount).ToArray();
-                var rng = new Random();
-                rng.Shuffle(cardConfigs);
-                var randomConfig = cardConfigs.FirstOrDefault();
+                var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-1f, 0, 0), Quaternion.Euler(0, 0, 180));
+                card.Init(cardConfig);
+                AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, Vector3.zero);
+                game.cards.Push(card);
 
-                if (randomConfig != null)
-                {
-                    var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-1f, 0, 0), Quaternion.Euler(0,0, 180));
-                    card.Init(randomConfig);
-                    AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition,  new Vector3(0, _yCardPos, 0), 1f, Vector3.zero);
-                
-                    count++;
-                    _yCardPos += yCardOffset;
-                }
-                
+                count++;
+                _yCardPos += yCardOffset;
+
+
                 yield return new WaitForSeconds(0.1f);
+            }
+
+            StartCoroutine(MoveCardsOnBoard());
+        }
+
+        private IEnumerator MoveCardsOnBoard()
+        {
+            var boardPositions = game.table.GetComponentsInChildren<BoardPositionComponent>();
+
+            foreach (var boardPositionComponent in boardPositions)
+            {
+                if (game.cards.Count > 0)
+                {
+                    var card = game.cards.Pop();
+                    AnimationExtension.MoveAnim(card.transform, boardPositionComponent.transform, Vector3.zero, 1f,
+                        Vector3.zero);
+                }
+                else yield break;
+
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }
