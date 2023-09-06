@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb5f93c75fcc4d7da85dc22ecf5a1d5b, type: 3}
-  m_Name: Add 20
+  m_Name: Add 1000
   m_EditorClassIdentifier: 
-  <CardType>k__BackingField: 4
+  <CardType>k__BackingField: 0
   <CardColor>k__BackingField: {r: 0.1882353, g: 0.37254903, b: 0.972549, a: 1}
-  <Value>k__BackingField: 20
+  <Value>k__BackingField: 1000
   <StringBeforeValue>k__BackingField: +
-  <StringAfterValue>k__BackingField: '%'
-  <UnlockAfterWinsCount>k__BackingField: 0
+  <StringAfterValue>k__BackingField: $
+  <UnlockAfterWinsCount>k__BackingField: 25

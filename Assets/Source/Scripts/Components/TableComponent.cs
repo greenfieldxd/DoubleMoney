@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 namespace Source.Scripts.Components
@@ -8,6 +9,8 @@ namespace Source.Scripts.Components
         [field:SerializeField] public CardComponent Card { get; private set; }
         [field:SerializeField] public Transform DeckPosition { get; private set; }
         [field:SerializeField] public Transform BoardPosition { get; private set; }
+        [field:SerializeField] public TextMeshProUGUI MyTextField { get; private set; }
+        [field:SerializeField] public TextMeshProUGUI OpponentTextField { get; private set; }
 
         [Button]
         public void ClearBoard()
