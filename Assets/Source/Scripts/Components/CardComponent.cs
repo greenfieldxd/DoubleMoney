@@ -10,8 +10,13 @@ namespace Source.Scripts.Components
         [SerializeField] private MeshRenderer meshBase;
         [SerializeField] private MeshRenderer meshColor;
 
+        private CardConfig _config;
+
+        public CardConfig Config => _config;
+        
         public void Init(CardConfig config)
         {
+            _config = config;
             text.text = config.GetCardText();
             text.color = config.CardColor;
             meshColor.material.color = config.CardColor;

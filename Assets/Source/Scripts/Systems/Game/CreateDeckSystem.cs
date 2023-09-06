@@ -42,7 +42,7 @@ namespace Source.Scripts.Systems.Game
                 var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 0, 0));
                 card.Init(cardConfig);
                 AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, new Vector3(0,0, 180));
-                game.cards.Push(card);
+                game.cardsInDeck.Push(card);
 
                 count++;
                 _yCardPos += yCardOffset;
@@ -51,7 +51,7 @@ namespace Source.Scripts.Systems.Game
                 yield return new WaitForSeconds(0.1f);
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.7f);
 
             StartCoroutine(MoveCardsOnBoard());
         }
@@ -62,15 +62,18 @@ namespace Source.Scripts.Systems.Game
 
             foreach (var boardPositionComponent in boardPositions)
             {
-                if (game.cards.Count > 0)
+                if (game.cardsInDeck.Count > 0)
                 {
-                    var card = game.cards.Pop();
+                    var card = game.cardsInDeck.Pop();
+                    game.cardsOnBoard.Add(card);
                     AnimationExtension.JumpAnim(card.transform, boardPositionComponent.transform, Vector3.zero, 1f, Vector3.zero);
                 }
                 else yield break;
 
                 yield return new WaitForSeconds(0.05f);
             }
+
+            game.blockClicks = false;
         }
     }
 }

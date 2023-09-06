@@ -11,6 +11,8 @@ namespace Source.Scripts.Components
         [field:SerializeField] public Transform BoardPosition { get; private set; }
         [field:SerializeField] public TextMeshProUGUI MyTextField { get; private set; }
         [field:SerializeField] public TextMeshProUGUI OpponentTextField { get; private set; }
+        [field:SerializeField] public StackComponent MyStack { get; private set; }
+        [field:SerializeField] public StackComponent OpponentStack { get; private set; }
 
         [Button]
         public void ClearBoard()
