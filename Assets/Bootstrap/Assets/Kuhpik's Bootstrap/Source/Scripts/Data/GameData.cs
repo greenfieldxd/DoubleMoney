@@ -17,6 +17,7 @@ namespace Kuhpik
     public class GameData
     {
         public TurnType currentTurnType = TurnType.My;
+        public int roundsCount;
         public int movesCount;
         public bool blockClicks = true;
 

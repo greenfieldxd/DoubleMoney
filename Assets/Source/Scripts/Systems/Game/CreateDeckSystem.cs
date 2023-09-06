@@ -13,18 +13,16 @@ namespace Source.Scripts.Systems.Game
     public class CreateDeckSystem : GameSystem
     {
         [SerializeField] private CardComponent cardPrefab;
-        [SerializeField] private int deckSize = 15;
         [SerializeField] private float yCardOffset = 0.01f;
 
         private float _yCardPos;
+        private int _deckSize;
 
         public override void OnInit()
         {
+            var boardPositionCount = game.table.GetComponentsInChildren<BoardPositionComponent>().Length;
+            _deckSize = game.roundsCount * boardPositionCount;
             StartCoroutine(CreateDeck());
-        }
-
-        public override void OnUpdate()
-        {
         }
 
         private IEnumerator CreateDeck()
@@ -37,7 +35,7 @@ namespace Source.Scripts.Systems.Game
 
             foreach (var cardConfig in configs)
             {
-                if (count >= deckSize) yield break;
+                if (count >= _deckSize) yield break;
 
                 var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 0, 0));
                 card.Init(cardConfig);
