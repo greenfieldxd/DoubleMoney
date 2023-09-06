@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Kuhpik;
 using Source.Scripts.Components;
@@ -27,22 +28,35 @@ namespace Source.Scripts.Systems.Game
 
         private IEnumerator CreateDeck()
         {
-            var count = 0;
+            var typeIndex = 0;
+            var types = (CardType[]) Enum.GetValues(typeof(CardType));
+            var rnd = new Random();
 
+            
             var configs = game.cardConfigs.Where(x => player.winsCount >= x.UnlockAfterWinsCount).ToArray();
             var rng = new Random();
             rng.Shuffle(configs);
 
-            foreach (var cardConfig in configs)
+            while (game.cardsInDeck.Count < _deckSize)
             {
-                if (count >= _deckSize) yield break;
+                CardType type = types[typeIndex];
+                var configsShuffle = configs.Where(x => type == x.CardType).ToArray();
 
+                if (configsShuffle.Length == 0)
+                {
+                    typeIndex++;
+                    if (typeIndex >= types.Length) typeIndex = 0;
+                    continue;
+                }
+                
+                rnd.Shuffle(configsShuffle);
                 var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 0, 0));
-                card.Init(cardConfig);
+                card.Init(configsShuffle.First());
                 AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, new Vector3(0,0, 180));
                 game.cardsInDeck.Push(card);
 
-                count++;
+                typeIndex++;
+                if (typeIndex >= types.Length) typeIndex = 0;
                 _yCardPos += yCardOffset;
 
 
