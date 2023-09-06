@@ -39,9 +39,9 @@ namespace Source.Scripts.Systems.Game
             {
                 if (count >= deckSize) yield break;
 
-                var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-1f, 0, 0), Quaternion.Euler(0, 0, 180));
+                var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 0, 0));
                 card.Init(cardConfig);
-                AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, Vector3.zero);
+                AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, new Vector3(0,0, 180));
                 game.cards.Push(card);
 
                 count++;
@@ -50,6 +50,8 @@ namespace Source.Scripts.Systems.Game
 
                 yield return new WaitForSeconds(0.1f);
             }
+
+            yield return new WaitForSeconds(2f);
 
             StartCoroutine(MoveCardsOnBoard());
         }
