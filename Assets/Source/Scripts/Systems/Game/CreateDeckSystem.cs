@@ -20,9 +20,16 @@ namespace Source.Scripts.Systems.Game
 
         public override void OnInit()
         {
-            var boardPositionCount = game.table.GetComponentsInChildren<BoardPositionComponent>().Length;
-            _deckSize = game.roundsCount * boardPositionCount;
-            StartCoroutine(CreateDeck());
+            foreach (var point in game.Board.BoardPointList)
+            {
+                CardComponent card = Instantiate(cardPrefab, point.transform);
+                point.SetCardSlot(card);
+
+                card.SetAvailable(point.DependenceCount <= 0);
+            }
+            //var boardPositionCount = game.table.GetComponentsInChildren<BoardPositionComponent>().Length;
+            //_deckSize = game.roundsCount * boardPositionCount;
+            //StartCoroutine(CreateDeck());
         }
 
         private IEnumerator CreateDeck()
