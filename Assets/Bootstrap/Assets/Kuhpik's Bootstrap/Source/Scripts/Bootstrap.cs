@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Supyrb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace Kuhpik
         public void GameRestart(int sceneIndex)
         {
             GameEndEvent?.Invoke();
+            Signals.Clear();
             SaveGame();
             SceneManager.LoadScene(sceneIndex);
         }

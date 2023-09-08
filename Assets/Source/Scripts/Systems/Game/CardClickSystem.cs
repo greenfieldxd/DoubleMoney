@@ -1,6 +1,8 @@
 ﻿using Kuhpik;
 using Source.Scripts.Components;
 using Source.Scripts.Enums;
+using Supyrb;
+using System.Linq;
 using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
@@ -16,9 +18,6 @@ namespace Source.Scripts.Systems.Game
 
         public override void OnUpdate()
         {
-            if (game.blockClicks) return;
-            if (game.currentTurnType != TurnType.My) return;
-            
             if(Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
@@ -28,10 +27,14 @@ namespace Source.Scripts.Systems.Game
                 {
                     var card = hit.transform.GetComponent<CardComponent>();
 
-                    if (card != null)
+                    if (card != null && card.IsAvailable)
                     {
-                        game.cardsOnBoard.Remove(card);
-                        game.actions.Calculate(game.currentTurnType, card);
+                        BoardPointComponent point = game.Board.BoardPointList.FirstOrDefault(x => x.CardSlot == card);
+                        point.SetCardSlot(null);
+
+                        Destroy(card.gameObject);
+
+                        Signals.Get<CardTakeSignal>().Dispatch();
                     }
                 }
             }
