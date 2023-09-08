@@ -19,12 +19,9 @@ namespace Kuhpik
         public TurnType currentTurnType = TurnType.My;
         public int roundsCount;
         public int movesCount;
-        public bool blockClicks = true;
 
         [SerializeField] private int myMoney;
         [SerializeField] private int opponentMoney;
-        
-        public Actions actions = new Actions();
         
         public event Action OnMoneyChanged;
 
@@ -53,12 +50,11 @@ namespace Kuhpik
         }
         
         public TableComponent table;
+        public BoardComponent board;
         public Stack<CardComponent> cardsInDeck = new Stack<CardComponent>();
         public List<CardComponent> cardsOnBoard = new List<CardComponent>();
         
         //Configs
         public List<CardConfig> cardConfigs = new List<CardConfig>();
-
-        public BoardComponent Board;
     }
 }

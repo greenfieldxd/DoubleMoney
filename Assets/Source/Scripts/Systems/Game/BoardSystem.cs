@@ -11,27 +11,27 @@ public class BoardSystem : GameSystem
     {
         Signals.Get<CardTakeSignal>().AddListener(UpdateDependence);
 
-        game.Board = FindObjectOfType<BoardComponent>();
+        game.board = FindObjectOfType<BoardComponent>();
         BoardVariantInit();
     }
 
     void BoardVariantInit()
     {
-        foreach (var prefab in game.Board.VariantPrefabList)
+        foreach (var prefab in game.board.VariantPrefabList)
         {
             prefab.SetActive(false);
         }
 
-        game.Board.VariantPrefabList[variantIndex].SetActive(true);
-        BoardPointComponent[] boardPointList = game.Board.VariantPrefabList[variantIndex].GetComponentsInChildren<BoardPointComponent>();
+        game.board.VariantPrefabList[variantIndex].SetActive(true);
+        BoardPointComponent[] boardPointList = game.board.VariantPrefabList[variantIndex].GetComponentsInChildren<BoardPointComponent>();
         foreach (var point in boardPointList)
         {
-            game.Board.BoardPointList.Add(point);
+            game.board.BoardPointList.Add(point);
         }
     }
     void UpdateDependence()
     {
-        foreach (var point in game.Board.BoardPointList)
+        foreach (var point in game.board.BoardPointList)
         {
             if (!point.CardSlot) continue;
 

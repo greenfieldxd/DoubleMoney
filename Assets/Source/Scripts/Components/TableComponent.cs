@@ -28,7 +28,7 @@ namespace Source.Scripts.Components
         [Button]
         public void CreateCards()
         {
-            var boardPositions = GetComponentsInChildren<BoardPositionComponent>();
+            var boardPositions = GetComponentsInChildren<BoardPointComponent>();
 
             foreach (var position in boardPositions)
             {

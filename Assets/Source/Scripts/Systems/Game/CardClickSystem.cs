@@ -1,8 +1,7 @@
 ﻿using Kuhpik;
 using Source.Scripts.Components;
-using Source.Scripts.Enums;
-using Supyrb;
 using System.Linq;
+using Source.Scripts.Signals;
 using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
@@ -29,12 +28,13 @@ namespace Source.Scripts.Systems.Game
 
                     if (card != null && card.IsAvailable)
                     {
-                        BoardPointComponent point = game.Board.BoardPointList.FirstOrDefault(x => x.CardSlot == card);
+                        game.cardsOnBoard.Remove(card);
+                        BoardPointComponent point = game.board.BoardPointList.First(x => x.CardSlot == card);
                         point.SetCardSlot(null);
-
-                        Destroy(card.gameObject);
-
-                        Signals.Get<CardTakeSignal>().Dispatch();
+                        card.SetAvailable(false);
+                        
+                        Supyrb.Signals.Get<CardTakeSignal>().Dispatch();
+                        Supyrb.Signals.Get<CalculateSignal>().Dispatch(game.currentTurnType, card);
                     }
                 }
             }

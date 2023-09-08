@@ -24,6 +24,7 @@ namespace Source.Scripts.Components
             text.text = config.GetCardText();
             text.color = config.CardColor;
             meshColor.material.color = config.CardColor;
+            isAvailable = false;
         }
         public void SetAvailable(bool status)
         {

@@ -21,16 +21,9 @@ namespace Source.Scripts.Systems.Game
 
         public override void OnInit()
         {
-            foreach (var point in game.Board.BoardPointList)
-            {
-                CardComponent card = Instantiate(cardPrefab, point.transform);
-                point.SetCardSlot(card);
-
-                card.SetAvailable(point.DependenceCount <= 0);
-            }
-            //var boardPositionCount = game.table.GetComponentsInChildren<BoardPositionComponent>().Length;
-            //_deckSize = game.roundsCount * boardPositionCount;
-            //StartCoroutine(CreateDeck());
+            var boardPositionCount = game.table.GetComponentsInChildren<BoardPointComponent>().Length;
+            _deckSize = game.roundsCount * boardPositionCount;
+            StartCoroutine(CreateDeck());
         }
 
         private IEnumerator CreateDeck()
@@ -77,22 +70,29 @@ namespace Source.Scripts.Systems.Game
 
         private IEnumerator MoveCardsOnBoard()
         {
-            var boardPositions = game.table.GetComponentsInChildren<BoardPositionComponent>();
+            var boardPoints = game.table.GetComponentsInChildren<BoardPointComponent>();
 
-            foreach (var boardPositionComponent in boardPositions)
+            foreach (var point in boardPoints)
             {
                 if (game.cardsInDeck.Count > 0)
                 {
                     var card = game.cardsInDeck.Pop();
                     game.cardsOnBoard.Add(card);
-                    AnimationExtension.JumpAnim(card.transform, boardPositionComponent.transform, Vector3.zero, 1f, Vector3.zero);
+                    point.SetCardSlot(card);
+                    card.SetAvailable(point.DependenceCount <= 0);
+                    AnimationExtension.JumpAnim(card.transform, point.transform, Vector3.zero, 1f, Vector3.zero);
                 }
                 else yield break;
 
                 yield return new WaitForSeconds(0.05f);
             }
 
-            game.blockClicks = false;
+            foreach (var point in game.board.BoardPointList)
+            {
+                if (!point.CardSlot) continue;
+
+                point.CardSlot.SetAvailable(point.IsCardSlotAvailable());
+            }
         }
     }
 }

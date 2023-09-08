@@ -2,6 +2,7 @@
 using Source.Scripts.Components;
 using Source.Scripts.Enums;
 using Source.Scripts.ScriptableObjects;
+using Source.Scripts.Signals;
 using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
@@ -10,7 +11,7 @@ namespace Source.Scripts.Systems.Game
     {
         public override void OnInit()
         {
-            game.actions.OnCalculate += Calculate;
+            Supyrb.Signals.Get<CalculateSignal>().AddListener(Calculate);
         }
 
         private void Calculate(TurnType turnType, CardComponent card)
