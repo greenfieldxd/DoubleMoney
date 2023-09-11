@@ -15,3 +15,4 @@ MonoBehaviour:
   boardType: 4
   roundCount: 1
   neededWins: 3
+  startMoneyCount: 75
