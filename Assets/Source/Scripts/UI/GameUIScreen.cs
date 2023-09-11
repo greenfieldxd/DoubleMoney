@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using Kuhpik;
+using Source.Scripts.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +11,24 @@ namespace Source.Scripts.UI
     public class GameUIScreen : UIScreen
     {
         [field:SerializeField] public TextMeshProUGUI MoneyText { get; private set; }
+        [field:SerializeField] public GameObject ButtonsHolder { get; private set; }
+        [field:SerializeField] public Button SelectRandom { get; private set; }
+        [field:SerializeField] public RockPaperScissorsButton[] RockPaperScissorsButtons { get; private set; }
+        
+        
         public void UpdateMoney()
         {
-            //MoneyText.text = Bootstrap.Instance.PlayerData.Money.ToString();
+            MoneyText.text = Bootstrap.Instance.PlayerData.Money.ToString();
             
-            if (DOTween.IsTweening(MoneyText.transform)) return;
-            MoneyText.transform.DOPunchScale(new Vector3(0.1f,0.1f,0.1f), 0.1f, 1);
+            //if (DOTween.IsTweening(MoneyText.transform)) return;
+            //MoneyText.transform.DOPunchScale(new Vector3(0.1f,0.1f,0.1f), 0.1f, 1);
+        }
+
+        [Serializable]
+        public class RockPaperScissorsButton
+        {
+            public RockPaperScissorsType type;
+            public Button button;
         }
     }
 }

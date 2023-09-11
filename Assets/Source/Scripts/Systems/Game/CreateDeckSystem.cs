@@ -6,6 +6,7 @@ using Kuhpik;
 using Source.Scripts.Components;
 using Source.Scripts.Enums;
 using Source.Scripts.Extensions;
+using Source.Scripts.Signals;
 using UnityEngine;
 using Random = System.Random;
 
@@ -21,6 +22,8 @@ namespace Source.Scripts.Systems.Game
 
         public override void OnInit()
         {
+            Supyrb.Signals.Get<GetCardsFromDeckSignal>().AddListener(MoveCards);
+            
             var boardPositionCount = game.table.GetComponentsInChildren<BoardPointComponent>().Length;
             _deckSize = game.currentDuelConfig.RoundCount * boardPositionCount;
             StartCoroutine(CreateDeck());
@@ -64,7 +67,11 @@ namespace Source.Scripts.Systems.Game
             }
 
             yield return new WaitForSeconds(0.7f);
+            MoveCards();
+        }
 
+        private void MoveCards()
+        {
             StartCoroutine(MoveCardsOnBoard());
         }
 

@@ -16,14 +16,15 @@ namespace Kuhpik
     [Serializable]
     public class GameData
     {
-        public TurnType currentTurnType = TurnType.My;
         public DuelConfig currentDuelConfig;
         public int movesCount;
 
+        [SerializeField] private TurnType currentTurnType = TurnType.None;
         [SerializeField] private int myMoney;
         [SerializeField] private int opponentMoney;
         
         public event Action OnMoneyChanged;
+        public event Action OnTurnChanged;
 
         public int MyMoney
         {
@@ -34,6 +35,20 @@ namespace Kuhpik
                 myMoney = Mathf.Clamp(value,0,999999999);
                 
                 if (delta>0) OnMoneyChanged?.Invoke();
+            }
+        }
+
+        public TurnType CurrentTurn
+        {
+            get => currentTurnType;
+            set
+            {
+                if (value != currentTurnType)
+                {
+                    currentTurnType = value;
+                    Debug.Log("Current: " + currentTurnType);
+                    OnTurnChanged?.Invoke();
+                }
             }
         }
 
