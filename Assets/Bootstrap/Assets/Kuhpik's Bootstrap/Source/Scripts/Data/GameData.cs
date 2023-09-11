@@ -17,7 +17,7 @@ namespace Kuhpik
     public class GameData
     {
         public TurnType currentTurnType = TurnType.My;
-        public int roundsCount;
+        public DuelConfig currentDuelConfig;
         public int movesCount;
 
         [SerializeField] private int myMoney;
@@ -56,5 +56,6 @@ namespace Kuhpik
         
         //Configs
         public List<CardConfig> cardConfigs = new List<CardConfig>();
+        public List<DuelConfig> duelConfigs = new List<DuelConfig>();
     }
 }

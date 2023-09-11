@@ -1,41 +1,44 @@
+using System;
+using System.Linq;
 using Kuhpik;
 using NaughtyAttributes;
-using Supyrb;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class BoardSystem : GameSystem
+namespace Source.Scripts.Systems.Game
 {
-    [SerializeField, BoxGroup("Test"), Range(0, 4)] int variantIndex = 0;
-
-    public override void OnInit()
+    public class BoardSystem : GameSystem
     {
-        Signals.Get<CardTakeSignal>().AddListener(UpdateDependence);
-
-        game.board = FindObjectOfType<BoardComponent>();
-        BoardVariantInit();
-    }
-
-    void BoardVariantInit()
-    {
-        foreach (var prefab in game.board.VariantPrefabList)
+        public override void OnInit()
         {
-            prefab.SetActive(false);
+            Supyrb.Signals.Get<CardTakeSignal>().AddListener(UpdateDependence);
+
+            game.board = FindObjectOfType<BoardComponent>();
+            BoardVariantInit();
         }
 
-        game.board.VariantPrefabList[variantIndex].SetActive(true);
-        BoardPointComponent[] boardPointList = game.board.VariantPrefabList[variantIndex].GetComponentsInChildren<BoardPointComponent>();
-        foreach (var point in boardPointList)
+        void BoardVariantInit()
         {
-            game.board.BoardPointList.Add(point);
+            var boardType = game.currentDuelConfig.BoardType;
+            var variantPrefab = game.board.VariantPrefabList.First(x => x.Type == boardType).Variant;
+            var boardVariant = Instantiate(variantPrefab, Vector3.zero, quaternion.identity, game.table.BoardPosition);
+            boardVariant.transform.localPosition = Vector3.zero;
+            
+            BoardPointComponent[] boardPointList = boardVariant.GetComponentsInChildren<BoardPointComponent>();
+            
+            foreach (var point in boardPointList)
+            {
+                game.board.BoardPointList.Add(point);
+            }
         }
-    }
-    void UpdateDependence()
-    {
-        foreach (var point in game.board.BoardPointList)
+        void UpdateDependence()
         {
-            if (!point.CardSlot) continue;
+            foreach (var point in game.board.BoardPointList)
+            {
+                if (!point.CardSlot) continue;
 
-            point.CardSlot.SetAvailable(point.IsCardSlotAvailable());
+                point.CardSlot.SetAvailable(point.IsCardSlotAvailable());
+            }
         }
     }
 }

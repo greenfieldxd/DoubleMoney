@@ -22,7 +22,7 @@ namespace Source.Scripts.Systems.Game
         public override void OnInit()
         {
             var boardPositionCount = game.table.GetComponentsInChildren<BoardPointComponent>().Length;
-            _deckSize = game.roundsCount * boardPositionCount;
+            _deckSize = game.currentDuelConfig.RoundCount * boardPositionCount;
             StartCoroutine(CreateDeck());
         }
 
