@@ -18,6 +18,8 @@ namespace Source.Scripts.Systems.Loading
             game.duelConfigs = duelConfigs;
             
             game.table = FindObjectOfType<TableComponent>();
+
+            Bootstrap.Instance.ChangeGameState(GameStateID.Menu);
         }
     }
 }

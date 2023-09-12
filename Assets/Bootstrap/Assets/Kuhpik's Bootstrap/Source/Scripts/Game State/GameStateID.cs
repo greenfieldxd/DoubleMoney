@@ -11,7 +11,9 @@
         Pause = 3,
         Result = 10,
         Shop = 20,
-        Settings = 30
+        Settings = 30,
+
+        Yandex = 99,
 
         // Extend just like that
         //

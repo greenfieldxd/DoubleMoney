@@ -12,6 +12,8 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
+        public int LanguageIndex;
+
         public int winsCount;
         
         [SerializeField] private int money;
