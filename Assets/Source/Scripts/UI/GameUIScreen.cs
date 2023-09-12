@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Kuhpik;
 using Source.Scripts.Enums;
+using Source.Scripts.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,9 +17,9 @@ namespace Source.Scripts.UI
         [field:SerializeField] public RockPaperScissorsButton[] RockPaperScissorsButtons { get; private set; }
         
         
-        public void UpdateMoney()
+        public void UpdateMoney(string value)
         {
-            MoneyText.text = Bootstrap.Instance.PlayerData.Money.ToString();
+            MoneyText.text = value;
             
             //if (DOTween.IsTweening(MoneyText.transform)) return;
             //MoneyText.transform.DOPunchScale(new Vector3(0.1f,0.1f,0.1f), 0.1f, 1);

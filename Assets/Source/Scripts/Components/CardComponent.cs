@@ -10,6 +10,7 @@ namespace Source.Scripts.Components
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private MeshRenderer meshBase;
         [SerializeField] private MeshRenderer meshColor;
+        [SerializeField] private Color tableColor;
 
         [SerializeField, BoxGroup("Debug"), ReadOnly] bool isAvailable;
 
@@ -26,8 +27,9 @@ namespace Source.Scripts.Components
             meshColor.material.color = config.CardColor;
             isAvailable = false;
         }
-        public void SetAvailable(bool status)
+        public void SetAvailable(bool status, bool withColor = false)
         {
+            if (withColor) meshBase.material.color = status ? Color.white :tableColor;
             isAvailable = status;
         }
     }

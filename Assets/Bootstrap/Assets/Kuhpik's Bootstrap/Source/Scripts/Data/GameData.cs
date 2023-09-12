@@ -23,7 +23,8 @@ namespace Kuhpik
         [SerializeField] private int myMoney;
         [SerializeField] private int opponentMoney;
         
-        public event Action OnMoneyChanged;
+        public event Action<int> OnMyMoneyChanged;
+        public event Action<int> OnOpponentMoneyChanged;
         public event Action OnTurnChanged;
 
         public int MyMoney
@@ -31,10 +32,11 @@ namespace Kuhpik
             get => myMoney;
             set
             {
+                var oldValue = myMoney;
                 var delta = Mathf.Abs(myMoney - value);
                 myMoney = Mathf.Clamp(value,0,999999999);
                 
-                if (delta>0) OnMoneyChanged?.Invoke();
+                if (delta > 0) OnMyMoneyChanged?.Invoke(oldValue);
             }
         }
 
@@ -57,10 +59,11 @@ namespace Kuhpik
             get => opponentMoney;
             set
             {
+                var oldValue = opponentMoney;
                 var delta = Mathf.Abs(opponentMoney - value);
                 opponentMoney = Mathf.Clamp(value,0,999999999);
                 
-                if (delta>0) OnMoneyChanged?.Invoke();
+                if (delta > 0) OnOpponentMoneyChanged?.Invoke(oldValue);
             }
         }
         

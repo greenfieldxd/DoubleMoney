@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using DG.Tweening;
 using Kuhpik;
 using Source.Scripts.Extensions;
 using Source.Scripts.ScriptableObjects;
@@ -10,21 +13,25 @@ namespace Source.Scripts.Systems.Game
 {
     public class InitGameSystem : GameSystemWithScreen<GameUIScreen>
     {
+        private float _oldValue;
+        
         public override void OnInit()
         {
-            game.OnMoneyChanged += UpdateMoney;
-            UpdateMoney();
+            screen.UpdateMoney(OtherExtensions.FormatNumberWithCommas(player.Money));
+            UpdateTableMoney();
+
+            game.OnMyMoneyChanged += UpdateMyMoney;
+            game.OnOpponentMoneyChanged += UpdateOpponentMoney;
 
             game.currentDuelConfig = GetDuelConfig();
             game.MyMoney = game.currentDuelConfig.StartMoneyCount;
             game.OpponentMoney = game.currentDuelConfig.StartMoneyCount;
         }
 
-        private void UpdateMoney()
+        private void UpdateTableMoney()
         {
-            screen.UpdateMoney();
-            game.table.MyTextField.text = $"{game.MyMoney}$";
-            game.table.OpponentTextField.text = $"{game.OpponentMoney}$";
+            game.table.MyTextField.text = $"{OtherExtensions.FormatNumberWithCommas(game.MyMoney)}$";
+            game.table.OpponentTextField.text = $"{OtherExtensions.FormatNumberWithCommas(game.OpponentMoney)}$";
         }
 
         private DuelConfig GetDuelConfig()
@@ -35,6 +42,20 @@ namespace Source.Scripts.Systems.Game
                 var rng = new Random();
                 rng.Shuffle(canGetVariants);
                 return canGetVariants.First();
+        }
+
+        private void UpdateMyMoney(int oldValue)
+        {
+            float valFloat = oldValue;
+            Action action = () => game.table.MyTextField.text = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
+            DOTween.To(() => valFloat, x => valFloat = x, game.MyMoney, 0.5f).OnUpdate(() => action.Invoke());
+        }
+        
+        private void UpdateOpponentMoney(int oldValue)
+        {
+            float valFloat = oldValue;
+            Action action = () => game.table.OpponentTextField.text = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
+            DOTween.To(() => valFloat, x => valFloat = x, game.OpponentMoney, 0.5f).OnUpdate(() => action.Invoke());
         }
     }
 }

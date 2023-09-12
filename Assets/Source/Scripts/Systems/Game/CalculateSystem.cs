@@ -76,11 +76,21 @@ namespace Source.Scripts.Systems.Game
                     break;
                 
                 case CardType.AddMove:
-                    game.movesCount += (int)cardConfig.Value;
+                    if (turnType == TurnType.My)
+                    {
+                        game.table.MyStack.PushToStackWithJump(card.transform, () => game.movesCount += (int) cardConfig.Value);
+                    }
+                    
+                    else if (turnType == TurnType.Opponent)
+                    {
+                        game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.movesCount += (int) cardConfig.Value);
+                    }
+                    
                     break;
             }
 
             game.movesCount--;
+            
             StartCoroutine(DelayNextTurn());
         }
 

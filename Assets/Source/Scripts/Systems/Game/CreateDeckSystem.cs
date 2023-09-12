@@ -98,7 +98,7 @@ namespace Source.Scripts.Systems.Game
             {
                 if (!point.CardSlot) continue;
 
-                point.CardSlot.SetAvailable(point.IsCardSlotAvailable());
+                point.CardSlot.SetAvailable(point.IsCardSlotAvailable(), true);
             }
         }
     }

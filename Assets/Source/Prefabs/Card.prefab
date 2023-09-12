@@ -478,6 +478,8 @@ MonoBehaviour:
   text: {fileID: 6772631334321438764}
   meshBase: {fileID: 7315433154856212062}
   meshColor: {fileID: 1582089147746955137}
+  tableColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  isAvailable: 0
 --- !u!65 &1737846562660013595
 BoxCollider:
   m_ObjectHideFlags: 0
