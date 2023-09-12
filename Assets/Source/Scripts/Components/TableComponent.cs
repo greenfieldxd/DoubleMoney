@@ -13,6 +13,7 @@ namespace Source.Scripts.Components
         [field:SerializeField] public TextMeshProUGUI OpponentTextField { get; private set; }
         [field:SerializeField] public StackComponent MyStack { get; private set; }
         [field:SerializeField] public StackComponent OpponentStack { get; private set; }
+        [field:SerializeField] public HandComponent[] Hands { get; private set; }
 
         [Button]
         public void ClearBoard()
