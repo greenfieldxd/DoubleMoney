@@ -17,6 +17,7 @@ public class Translator : MonoBehaviour
             "Richest People",
             "Hidden user",
             "Your budget:",
+            "Cards",
         },
         #endregion
 
@@ -27,6 +28,7 @@ public class Translator : MonoBehaviour
             "Богатейшие Люди",
             "Пользователь скрыт",
             "Твой бюджет:",
+            "Карты",
         },
         #endregion
     };
