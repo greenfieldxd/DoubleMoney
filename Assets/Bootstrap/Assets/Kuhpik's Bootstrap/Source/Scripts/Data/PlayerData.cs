@@ -13,6 +13,7 @@ namespace Kuhpik
     public class PlayerData
     {
         public bool IsFirstLaunch;
+        public bool IsSoundOff;
         public int LanguageIndex;
 
         public int winsCount;

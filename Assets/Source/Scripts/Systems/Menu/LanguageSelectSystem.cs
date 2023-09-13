@@ -16,7 +16,7 @@ public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
             player.LanguageIndex = 0;
 
         UpdateLanguage();
-        //game.AudioSystem.CreateSound(0);
+        game.AudioSystem.CreateSound(0);
 
         Extensions.SaveGame(player);
         Extensions.TransformPunchScale(screen.LanguageButton.transform);

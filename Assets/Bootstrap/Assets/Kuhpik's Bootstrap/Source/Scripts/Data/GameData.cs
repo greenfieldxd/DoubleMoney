@@ -17,6 +17,7 @@ namespace Kuhpik
     public class GameData
     {
         public Camera MainCamera;
+        public AudioLoadingSystem AudioSystem;
 
         public DuelConfig currentDuelConfig;
         public int movesCount;

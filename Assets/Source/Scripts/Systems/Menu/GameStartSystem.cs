@@ -8,7 +8,7 @@ public class GameStartSystem : GameSystemWithScreen<MenuUIScreen>
     }
     void OnStartGame()
     {
-        //game.AudioSystem.CreateSound(0);
+        game.AudioSystem.CreateSound(0);
         //game.AudioSystem.CreateMusic(1);
 
         Bootstrap.Instance.ChangeGameState(GameStateID.Game);
