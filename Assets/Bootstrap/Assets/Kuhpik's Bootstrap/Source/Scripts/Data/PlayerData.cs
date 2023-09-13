@@ -12,6 +12,7 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
+        public bool IsFirstLaunch;
         public int LanguageIndex;
 
         public int winsCount;

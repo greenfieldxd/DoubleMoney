@@ -16,6 +16,8 @@ namespace Kuhpik
     [Serializable]
     public class GameData
     {
+        public Camera MainCamera;
+
         public DuelConfig currentDuelConfig;
         public int movesCount;
 

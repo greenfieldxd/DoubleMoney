@@ -14,6 +14,9 @@ public class Translator : MonoBehaviour
         {
             "Loading...",
             "PLAY",
+            "Richest People",
+            "Hidden user",
+            "Your budget:",
         },
         #endregion
 
@@ -21,6 +24,9 @@ public class Translator : MonoBehaviour
         {
             "Загрузка...",
             "ИГРАТЬ",
+            "Богатейшие Люди",
+            "Пользователь скрыт",
+            "Твой бюджет:",
         },
         #endregion
     };
