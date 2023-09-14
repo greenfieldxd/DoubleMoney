@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220401d1844c4bcf8a62edb273a54bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handMoveDuration: 0.5
 --- !u!1 &4822351755368574549
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minWaitDelay: 0.2
-  maxWaitDelay: 1.5
+  maxWaitDelay: 1
   hotPriorityTypes: 0000000001000000
   mediumPriorityTypes: 04000000030000000500000002000000
   lowPriorityTypes: 060000000700000008000000

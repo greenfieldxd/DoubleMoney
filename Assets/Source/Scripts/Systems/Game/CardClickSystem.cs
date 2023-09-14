@@ -1,6 +1,7 @@
 ﻿using Kuhpik;
 using Source.Scripts.Components;
 using System.Linq;
+using Source.Scripts.Data;
 using Source.Scripts.Enums;
 using Source.Scripts.Signals;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace Source.Scripts.Systems.Game
                         card.SetAvailable(false);
                         
                         Supyrb.Signals.Get<CardTakeSignal>().Dispatch();
-                        Supyrb.Signals.Get<CalculateSignal>().Dispatch(game.CurrentTurn, card);
+                        Supyrb.Signals.Get<HandMoveSignal>().Dispatch(new HandData(card, HandMoveType.MoveCard, game.CurrentTurn));
                     }
                 }
             }

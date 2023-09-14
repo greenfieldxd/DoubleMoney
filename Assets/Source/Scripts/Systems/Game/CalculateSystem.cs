@@ -28,64 +28,48 @@ namespace Source.Scripts.Systems.Game
             switch (cardConfig.CardType)
             {
                 case CardType.Add:
-                    if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, () => game.MyMoney += (int)cardConfig.Value);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.OpponentMoney += (int)cardConfig.Value);
+                    if (turnType == TurnType.My) game.MyMoney += (int)cardConfig.Value;
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney += (int)cardConfig.Value;
                     break;
                 
                 case CardType.Multiply:
-                    if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, () => game.MyMoney *= (int)cardConfig.Value);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.OpponentMoney *= (int)cardConfig.Value);
+                    if (turnType == TurnType.My) game.MyMoney *= (int)cardConfig.Value;
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney *= (int)cardConfig.Value;
                     break;
                 
                 case CardType.Divide:
-                    if (turnType == TurnType.My) game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney / cardConfig.Value));
-                    else if (turnType == TurnType.Opponent) game.table.MyStack.PushToStackWithJump(card.transform, () => game.MyMoney = Mathf.RoundToInt(game.MyMoney / cardConfig.Value));
+                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney / cardConfig.Value);
+                    else if (turnType == TurnType.Opponent) game.MyMoney = Mathf.RoundToInt(game.MyMoney / cardConfig.Value);
                     break;
                 
                 case CardType.AddPercentage:
-                    if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, () => game.MyMoney = Mathf.RoundToInt(game.MyMoney + game.MyMoney * cardConfig.Value / 100));
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney + game.OpponentMoney * cardConfig.Value / 100));
+                    if (turnType == TurnType.My) game.MyMoney = Mathf.RoundToInt(game.MyMoney + game.MyMoney * cardConfig.Value / 100);
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney + game.OpponentMoney * cardConfig.Value / 100);
                     break;
                 
                 case CardType.SubtractPercentage:
-                    if (turnType == TurnType.My) game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney - game.OpponentMoney * cardConfig.Value / 100));
-                    else if (turnType == TurnType.Opponent) game.table.MyStack.PushToStackWithJump(card.transform, () => game.MyMoney = Mathf.RoundToInt(game.MyMoney - game.MyMoney * cardConfig.Value / 100));
+                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney - game.OpponentMoney * cardConfig.Value / 100);
+                    else if (turnType == TurnType.Opponent)game.MyMoney = Mathf.RoundToInt(game.MyMoney - game.MyMoney * cardConfig.Value / 100);
                     break;
                 
                 case CardType.StealPercentage:
                     if (turnType == TurnType.My)
                     {
-                        game.table.OpponentStack.PushToStackWithJump(card.transform, () =>
-                        {
-                            var value = Mathf.RoundToInt(game.OpponentMoney * cardConfig.Value / 100);
-                            game.OpponentMoney -= value;
-                            game.MyMoney += value;
-                        });
+                        var value = Mathf.RoundToInt(game.OpponentMoney * cardConfig.Value / 100);
+                        game.OpponentMoney -= value;
+                        game.MyMoney += value;
                     }
-                    
                     else if (turnType == TurnType.Opponent)
                     {
-                        game.table.MyStack.PushToStackWithJump(card.transform, () =>
-                        {
-                            var value = Mathf.RoundToInt(game.MyMoney * cardConfig.Value / 100);
-                            game.MyMoney -= value;
-                            game.OpponentMoney += value;
-                        });
+                        var value = Mathf.RoundToInt(game.MyMoney * cardConfig.Value / 100);
+                        game.MyMoney -= value;
+                        game.OpponentMoney += value;
                     }
-
                     break;
                 
                 case CardType.AddMove:
-                    if (turnType == TurnType.My)
-                    {
-                        game.table.MyStack.PushToStackWithJump(card.transform, () => game.movesCount += (int) cardConfig.Value);
-                    }
-                    
-                    else if (turnType == TurnType.Opponent)
-                    {
-                        game.table.OpponentStack.PushToStackWithJump(card.transform, () => game.movesCount += (int) cardConfig.Value);
-                    }
-                    
+                    if (turnType == TurnType.My) game.movesCount += (int) cardConfig.Value;
+                    else if (turnType == TurnType.Opponent) game.movesCount += (int) cardConfig.Value;
                     break;
             }
 
