@@ -11,10 +11,10 @@ using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
 {
-    public class HandMoveSystem : GameSystem
+    public class HandMoveCardsSystem : GameSystem
     {
         [SerializeField] private float handMoveDuration = 0.5f;
-        
+
         private static readonly int Take = Animator.StringToHash("Take");
 
         public override void OnInit()
@@ -26,27 +26,21 @@ namespace Source.Scripts.Systems.Game
         {
             var hand = game.table.Hands.First(x => x.TurnType == data.TurnType);
             var card = data.Card;
-            
-            switch (data.HandMoveType)
+
+            var afterMoveAction = new Action(() =>
             {
-                case HandMoveType.MoveCard:
-                    
-                    var afterMoveAction = new Action(() =>
+                hand.Animator.SetBool(Take, true);
+                StartCoroutine(DelayRoutine(0.3f, () =>
+                {
+                    MoveToStack(card, data.TurnType, () =>
                     {
-                        hand.Animator.SetBool(Take, true);
-                        StartCoroutine(DelayRoutine(0.3f, () =>
-                        {
-                            MoveToStack(card, data.TurnType, () =>
-                            {
-                                hand.Animator.SetBool(Take, false);
-                                MoveHand(hand, null, hand.StartPosition);
-                            });
-                        }));
+                        hand.Animator.SetBool(Take, false);
+                        MoveHand(hand, null, hand.StartPosition);
                     });
-                    
-                    MoveHand(hand, afterMoveAction, Vector3.zero, card.transform);
-                    break;
-            }
+                }));
+            });
+
+            MoveHand(hand, afterMoveAction, Vector3.zero, card.transform);
         }
 
 
@@ -74,42 +68,49 @@ namespace Source.Scripts.Systems.Game
                 onComplete?.Invoke();
                 Supyrb.Signals.Get<CalculateSignal>().Dispatch(turnType, card);
             });
-            
-              switch (cardType)
+
+            switch (cardType)
             {
                 case CardType.Add:
                     if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.OpponentStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.Multiply:
                     if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.OpponentStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.Divide:
                     if (turnType == TurnType.My) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.MyStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.MyStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.AddPercentage:
                     if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.OpponentStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.SubtractPercentage:
                     if (turnType == TurnType.My) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.MyStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.MyStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.StealPercentage:
                     if (turnType == TurnType.My) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.MyStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.MyStack.PushToStackWithJump(card.transform, action);
                     break;
-                
+
                 case CardType.AddMove:
                     if (turnType == TurnType.My) game.table.MyStack.PushToStackWithJump(card.transform, action);
-                    else if (turnType == TurnType.Opponent) game.table.OpponentStack.PushToStackWithJump(card.transform, action);
+                    else if (turnType == TurnType.Opponent)
+                        game.table.OpponentStack.PushToStackWithJump(card.transform, action);
                     break;
             }
         }

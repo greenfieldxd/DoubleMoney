@@ -38,7 +38,7 @@ namespace Source.Scripts.Systems.Game
                         card.SetAvailable(false);
                         
                         Supyrb.Signals.Get<CardTakeSignal>().Dispatch();
-                        Supyrb.Signals.Get<HandMoveSignal>().Dispatch(new HandData(card, HandMoveType.MoveCard, game.CurrentTurn));
+                        Supyrb.Signals.Get<HandMoveSignal>().Dispatch(new HandData(card, game.CurrentTurn));
                     }
                 }
             }

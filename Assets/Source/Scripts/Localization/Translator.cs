@@ -18,6 +18,10 @@ public class Translator : MonoBehaviour
             "Hidden user",
             "Your budget:",
             "Cards",
+            "Rock",
+            "Scissors",
+            "Paper",
+            "Random"
         },
         #endregion
 
@@ -29,6 +33,10 @@ public class Translator : MonoBehaviour
             "Пользователь скрыт",
             "Твой бюджет:",
             "Карты",
+            "Камень",
+            "Ножницы",
+            "Бумага",
+            "Случайно"
         },
         #endregion
     };

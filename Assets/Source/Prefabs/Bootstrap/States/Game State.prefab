@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4462952787908260589}
   - component: {fileID: 2156946481936142713}
   m_Layer: 0
-  m_Name: HandMoveSystem
+  m_Name: HandMoveCardsSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMiniGameDelay: 2.3
+  handMoveDuration: 0.3
   types: 000000000100000002000000
 --- !u!1 &6805029138695218186
 GameObject:

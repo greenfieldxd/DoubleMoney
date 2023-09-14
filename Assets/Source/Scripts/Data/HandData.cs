@@ -7,14 +7,12 @@ namespace Source.Scripts.Data
     [Serializable]
     public class HandData
     {
-        public HandMoveType HandMoveType { get; private set; }
         public TurnType TurnType { get; private set; }
         public CardComponent Card { get; private set; }
         
-        public HandData(CardComponent card, HandMoveType moveType, TurnType turnType)
+        public HandData(CardComponent card, TurnType turnType)
         {
             Card = card;
-            HandMoveType = moveType;
             TurnType = turnType;
         }
     }

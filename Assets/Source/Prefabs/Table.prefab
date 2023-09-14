@@ -242,6 +242,7 @@ Transform:
   - {fileID: 8640773685361245539}
   - {fileID: 1431215914378782480}
   - {fileID: 1516787316143199819}
+  - {fileID: 5348712046974562808}
   m_Father: {fileID: 8189168787277595647}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -380,6 +381,66 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5058288540508391421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5348712046974562808}
+  m_Layer: 0
+  m_Name: HandMiniGamePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5348712046974562808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058288540508391421}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8428613406685570072}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5159338939873618758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1338685018667021208}
+  m_Layer: 0
+  m_Name: HandMiniGamePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1338685018667021208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159338939873618758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 341558351434706139}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5492508006627955014
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +493,8 @@ MonoBehaviour:
     type: 3}
   <DeckPosition>k__BackingField: {fileID: 7578997051717915461}
   <BoardPosition>k__BackingField: {fileID: 2034476566908356750}
+  <HandMiniGameMy>k__BackingField: {fileID: 1338685018667021208}
+  <HandMiniGameOpponent>k__BackingField: {fileID: 5348712046974562808}
   <MyTextField>k__BackingField: {fileID: 291557469740910653}
   <OpponentTextField>k__BackingField: {fileID: 1393504019497530059}
   <MyStack>k__BackingField: {fileID: 3558847369660872190}
@@ -516,6 +579,7 @@ Transform:
   - {fileID: 1179615392401867634}
   - {fileID: 7727261702976319271}
   - {fileID: 1589354412458998295}
+  - {fileID: 1338685018667021208}
   m_Father: {fileID: 8189168787277595647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
