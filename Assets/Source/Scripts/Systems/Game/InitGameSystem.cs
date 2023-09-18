@@ -17,7 +17,6 @@ namespace Source.Scripts.Systems.Game
         
         public override void OnInit()
         {
-            screen.UpdateMoney(OtherExtensions.FormatNumberWithCommas(player.Money));
             UpdateTableMoney();
 
             game.OnMyMoneyChanged += UpdateMyMoney;

@@ -11,20 +11,33 @@ namespace Source.Scripts.UI
 {
     public class GameUIScreen : UIScreen
     {
-        [field:SerializeField] public TextMeshProUGUI MoneyText { get; private set; }
+        [field:SerializeField] public GameObject TurnObject { get; private set; }
+        [field:SerializeField] public TextMeshProUGUI TurnText { get; private set; }
+        [field:SerializeField] public Image TurnImage { get; private set; }
+        [field:SerializeField] public Color ColorRed { get; private set; }
+        [field:SerializeField] public Color ColorGreen { get; private set; }
         [field:SerializeField] public GameObject ButtonsHolder { get; private set; }
         [field:SerializeField] public Button SelectRandom { get; private set; }
         [field:SerializeField] public RockPaperScissorsButton[] RockPaperScissorsButtons { get; private set; }
-        
-        
-        public void UpdateMoney(string value)
-        {
-            MoneyText.text = value;
-            
-            //if (DOTween.IsTweening(MoneyText.transform)) return;
-            //MoneyText.transform.DOPunchScale(new Vector3(0.1f,0.1f,0.1f), 0.1f, 1);
-        }
 
+
+        public void UpdateTurnHolder(TurnType type)
+        {
+            switch (type)
+            {
+                case TurnType.My:
+                    TurnImage.color = ColorGreen;
+                    TurnText.text = "your move";
+                    break;
+                
+                case TurnType.Opponent:
+                    TurnImage.color = ColorRed;
+                    TurnText.text = "opponent move";
+                    break;
+                
+            }
+        }
+        
         [Serializable]
         public class RockPaperScissorsButton
         {

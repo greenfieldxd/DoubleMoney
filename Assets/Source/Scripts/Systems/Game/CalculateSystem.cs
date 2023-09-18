@@ -4,11 +4,12 @@ using Source.Scripts.Components;
 using Source.Scripts.Enums;
 using Source.Scripts.ScriptableObjects;
 using Source.Scripts.Signals;
+using Source.Scripts.UI;
 using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
 {
-    public class CalculateSystem : GameSystem
+    public class CalculateSystem : GameSystemWithScreen<GameUIScreen>
     {
         [SerializeField] private float nextTurnDelay = 1.5f;
         
@@ -99,6 +100,7 @@ namespace Source.Scripts.Systems.Game
             }
             else game.CurrentTurn = _prevTurnType;
             
+            screen.UpdateTurnHolder(game.CurrentTurn);
             Supyrb.Signals.Get<CheckResultSignal>().Dispatch();
         }
     }

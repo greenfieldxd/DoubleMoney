@@ -79,6 +79,8 @@ namespace Source.Scripts.Systems.Game
                 screen.ButtonsHolder.transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => screen.ButtonsHolder.SetActive(false));
 
                 game.CurrentTurn = WhoWin();
+                screen.UpdateTurnHolder(game.CurrentTurn);
+                screen.TurnObject.SetActive(true);
                 game.movesCount++;
             }
             else ButtonStatus(true);
