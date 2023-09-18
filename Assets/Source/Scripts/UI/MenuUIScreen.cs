@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MenuUIScreen : UIScreen
 {
+    [SerializeField, BoxGroup("GameObject")] List<GameObject> panelList;
+
     [SerializeField, BoxGroup("Component")] List<RecordComponent> recordList;
 
     [SerializeField, BoxGroup("Button")] Button playButton;
@@ -20,4 +22,12 @@ public class MenuUIScreen : UIScreen
     public Button LanguageButton => languageButton;
     public Image LanguageImage => languageImage;
     public List<Sprite> LanguageSpriteList => languageSpriteList;
+
+    public void SetPanelActive(int index)
+    {
+        for (int i = 0; i < panelList.Count; i++)
+        {
+            panelList[i].SetActive(i == index);
+        }
+    }
 }
