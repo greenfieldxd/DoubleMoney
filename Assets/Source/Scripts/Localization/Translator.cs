@@ -21,7 +21,8 @@ public class Translator : MonoBehaviour
             "Rock",
             "Scissors",
             "Paper",
-            "Random"
+            "Random",
+            "Menu",
         },
         #endregion
 
@@ -36,7 +37,8 @@ public class Translator : MonoBehaviour
             "Камень",
             "Ножницы",
             "Бумага",
-            "Случайно"
+            "Случайно",
+            "Меню",
         },
         #endregion
     };
