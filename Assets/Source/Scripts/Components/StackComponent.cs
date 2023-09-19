@@ -52,13 +52,13 @@ namespace Source.Scripts.Components
             AnimationExtension.JumpAnim(item, transform, positionsInStack[stack.Count - 1].Position, 1f, rotation, 0.45f, onComplete);
         }
         
-        public void PushToStack(Transform item,  Action onComplete = null)
+        public void PushToStack(Transform item, float duration = 0.45f, Action onComplete = null)
         {
             if (stack.Count >= Capacity) return;
             
             stack.Push(item);
             OnStackChanged?.Invoke();
-            AnimationExtension.MoveAnim(item, transform, positionsInStack[stack.Count - 1].Position, 1f, rotation, 0.45f, onComplete);
+            AnimationExtension.MoveAnim(item, transform, positionsInStack[stack.Count - 1].Position, 1f, rotation, duration, onComplete);
         }
         
 

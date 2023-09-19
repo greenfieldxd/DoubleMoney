@@ -50,9 +50,12 @@ namespace Source.Scripts.Systems.Game
             
             _my = type;
             _opponent = types.GetRandom();
+
+            var myDuelistContainer = game.table.DuelistContainers.First(x => x.turnType == TurnType.My);
+            var opponentDuelistContainer = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent);
             
-            MoveHand(TurnType.My, () => AnimateHand(TurnType.My, _my, true), game.table.HandMiniGameMy.position);
-            MoveHand(TurnType.Opponent, () => AnimateHand(TurnType.Opponent, _opponent, true), game.table.HandMiniGameOpponent.position);
+            MoveHand(TurnType.My, () => AnimateHand(TurnType.My, _my, true), myDuelistContainer.handMiniGamePos.position);
+            MoveHand(TurnType.Opponent, () => AnimateHand(TurnType.Opponent, _opponent, true), opponentDuelistContainer.handMiniGamePos.position);
             
             Debug.Log($"My Type: {_my}");
             Debug.Log($"Opponent Type: {_opponent}");
@@ -66,8 +69,8 @@ namespace Source.Scripts.Systems.Game
         {
             yield return new WaitForSeconds(delay + handMoveDuration);
             
-            var myHand = game.table.Hands.First(x => x.TurnType == TurnType.My);
-            var opponentHand = game.table.Hands.First(x => x.TurnType == TurnType.Opponent);
+            var myHand = game.table.DuelistContainers.First(x => x.turnType == TurnType.My).hand;
+            var opponentHand = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).hand;
 
             MoveHand(TurnType.My, () => AnimateHand(TurnType.My, _my, false), myHand.StartPosition);
             MoveHand(TurnType.Opponent, () => AnimateHand(TurnType.Opponent, _opponent, false), opponentHand.StartPosition);
@@ -88,7 +91,7 @@ namespace Source.Scripts.Systems.Game
         
         private void MoveHand(TurnType turnType, Action action, Vector3 position, Transform parent = null)
         { 
-            var hand = game.table.Hands.First(x => x.TurnType == turnType);
+            var hand = game.table.DuelistContainers.First(x => x.turnType == turnType).hand;
 
             if (parent != null)
             {
@@ -118,7 +121,7 @@ namespace Source.Scripts.Systems.Game
                 
             }
 
-            var hand = game.table.Hands.First(x => x.TurnType == turnType);
+            var hand = game.table.DuelistContainers.First(x => x.turnType == turnType).hand;
             hand.Animator.SetBool(animKey, status);
         }
 

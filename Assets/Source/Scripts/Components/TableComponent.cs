@@ -1,4 +1,6 @@
-﻿using NaughtyAttributes;
+﻿using System;
+using NaughtyAttributes;
+using Source.Scripts.Enums;
 using TMPro;
 using UnityEngine;
 
@@ -9,13 +11,7 @@ namespace Source.Scripts.Components
         [field:SerializeField] public CardComponent Card { get; private set; }
         [field:SerializeField] public Transform DeckPosition { get; private set; }
         [field:SerializeField] public Transform BoardPosition { get; private set; }
-        [field:SerializeField] public Transform HandMiniGameMy { get; private set; }
-        [field:SerializeField] public Transform HandMiniGameOpponent { get; private set; }
-        [field:SerializeField] public TextMeshProUGUI MyTextField { get; private set; }
-        [field:SerializeField] public TextMeshProUGUI OpponentTextField { get; private set; }
-        [field:SerializeField] public StackComponent MyStack { get; private set; }
-        [field:SerializeField] public StackComponent OpponentStack { get; private set; }
-        [field:SerializeField] public HandComponent[] Hands { get; private set; }
+        [field:SerializeField] public DuelistObjects[] DuelistContainers { get; private set; }
 
         [Button]
         public void ClearBoard()
@@ -39,6 +35,17 @@ namespace Source.Scripts.Components
                 card.transform.localPosition = Vector3.zero;
                 card.transform.localRotation = Quaternion.Euler(0,0,0);
             }
+        }
+
+        [Serializable]
+        public class DuelistObjects
+        {
+            public TurnType turnType;
+            public HandComponent hand;
+            public StackComponent cardsStack;
+            public StackComponent moneyStack;
+            public TextMeshProUGUI moneyText;
+            public Transform handMiniGamePos;
         }
     }
 }
