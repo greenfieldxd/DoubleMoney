@@ -97,12 +97,13 @@ mergeInto(LibraryManager.library, {
 	
 	GetLeaderboard: function (_data)
 	{
+		var dataJson = UTF8ToString(_data);
+		var stringData = JSON.parse(dataJson);
+		
 		sdk.getLeaderboards().then(function(lb)
 		{
 			window.alert(_data);
-			var dataJson = UTF8ToString(_data);
 			window.alert(dataJson);
-			var stringData = JSON.parse(dataJson);	
 			window.alert(stringData);			
 			
 			lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 5 }).then(function(res)
