@@ -55,11 +55,11 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         cardBackIndex = int.Parse(button.name);
         int price = game.CardBackList[cardBackIndex].Price;
 
-        //if (price <= player.DiamondAmount)
-        //{
-        screen.PanelList[2].SetActive(true);
-        screen.PanelList[3].SetActive(true);
-        //}
+        if (price <= player.Money)
+        {
+            screen.PanelList[2].SetActive(true);
+            screen.PanelList[3].SetActive(true);
+        }
 
         Extensions.TransformPunchScale(button);
         game.AudioSystem.CreateSound(0);
@@ -91,7 +91,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
     void OnCardBuy(Transform button)
     {
         int price = game.CardBackList[cardBackIndex].Price;
-        //Signals.Get<ResourceSignal>().Dispatch(-price);
+        player.Money -= price;
 
         player.CardBackList[cardBackIndex] = 1;
         Extensions.SaveGame(player);
@@ -104,6 +104,8 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
     }
     void UpdateCardBack()
     {
+        screen.MoneyText.text = "$" + OtherExtensions.FormatNumberWithCommas(player.Money);
+
         foreach (var image in screen.CardBackImageList)
         {
             image.sprite = game.CardBackList[player.CardBackIndex].Sprite;
