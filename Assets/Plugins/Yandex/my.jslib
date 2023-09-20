@@ -85,11 +85,11 @@ mergeInto(LibraryManager.library, {
 	{
 		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
 		{
+			var dataJson = UTF8ToString(_data);
+			var stringData = JSON.parse(dataJson);
+		
 			sdk.getLeaderboards().then(function(lb)
 			{
-				var dataJson = UTF8ToString(_data);
-				var stringData = JSON.parse(dataJson);	
-				
 				lb.setLeaderboardScore(stringData.BoardName, stringData.Value);
 			});
 		}
@@ -97,10 +97,14 @@ mergeInto(LibraryManager.library, {
 	
 	GetLeaderboard: function (_data)
 	{
+		var dataJson = UTF8ToString(_data);
+		var stringData = JSON.parse(dataJson);
+		
 		sdk.getLeaderboards().then(function(lb)
 		{
-			var dataJson = UTF8ToString(_data);
-			var stringData = JSON.parse(dataJson);			
+			window.alert(_data);
+			window.alert(dataJson);
+			window.alert(stringData);			
 			
 			lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 5 }).then(function(res)
 			{

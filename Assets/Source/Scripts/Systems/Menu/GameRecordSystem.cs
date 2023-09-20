@@ -1,12 +1,9 @@
 using Kuhpik;
-using NaughtyAttributes;
 using Source.Scripts.Extensions;
 using UnityEngine;
 
 public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
 {
-    [SerializeField, BoxGroup("Settings")] string leaderboardName = "leader";
-
     LeaderboardData leaderboardData;
     public override void OnInit()
     {
@@ -35,7 +32,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
         {
             ObjectName = "Game Record",
             MethodEndName = "YandexLeaderboardData",
-            BoardName = leaderboardName
+            BoardName = "leader",
         };
 
         return JsonUtility.ToJson(data);
