@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using DG.Tweening;
 using Kuhpik;
+using Source.Scripts.Enums;
 using Source.Scripts.Extensions;
 using Source.Scripts.ScriptableObjects;
 using Source.Scripts.UI;
@@ -29,8 +30,8 @@ namespace Source.Scripts.Systems.Game
 
         private void UpdateTableMoney()
         {
-            game.table.MyTextField.text = $"{OtherExtensions.FormatNumberWithCommas(game.MyMoney)}$";
-            game.table.OpponentTextField.text = $"{OtherExtensions.FormatNumberWithCommas(game.OpponentMoney)}$";
+            game.table.DuelistContainers.First(x => x.turnType == TurnType.My).moneyText.text = $"{OtherExtensions.FormatNumberWithCommas(game.MyMoney)}$";
+            game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).moneyText.text = $"{OtherExtensions.FormatNumberWithCommas(game.OpponentMoney)}$";
         }
 
         private DuelConfig GetDuelConfig()
@@ -46,14 +47,14 @@ namespace Source.Scripts.Systems.Game
         private void UpdateMyMoney(int oldValue)
         {
             float valFloat = oldValue;
-            Action action = () => game.table.MyTextField.text = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
+            Action action = () =>  game.table.DuelistContainers.First(x => x.turnType == TurnType.My).moneyText.text = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
             DOTween.To(() => valFloat, x => valFloat = x, game.MyMoney, 0.5f).OnUpdate(() => action.Invoke());
         }
         
         private void UpdateOpponentMoney(int oldValue)
         {
             float valFloat = oldValue;
-            Action action = () => game.table.OpponentTextField.text = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
+            Action action = () => game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).moneyText.text  = $"{OtherExtensions.FormatNumberWithCommas((int)valFloat)}$";
             DOTween.To(() => valFloat, x => valFloat = x, game.OpponentMoney, 0.5f).OnUpdate(() => action.Invoke());
         }
     }

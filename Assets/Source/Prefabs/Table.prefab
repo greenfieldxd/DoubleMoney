@@ -212,6 +212,53 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1904360805016600300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2853697820552323111}
+  - component: {fileID: 3276765361923568737}
+  m_Layer: 0
+  m_Name: MoneyStack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2853697820552323111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904360805016600300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 341558351434706139}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3276765361923568737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904360805016600300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0788781af7dc194baffd955ed6c8443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.11, z: 0}
+  rotation: {x: 0, y: 90, z: 0}
+  maxHorizontalCount: 1
+  maxForwardCount: 1
 --- !u!1 &3731721046279159809
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +290,7 @@ Transform:
   - {fileID: 1431215914378782480}
   - {fileID: 1516787316143199819}
   - {fileID: 5348712046974562808}
+  - {fileID: 4196261717127109034}
   m_Father: {fileID: 8189168787277595647}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -493,15 +541,19 @@ MonoBehaviour:
     type: 3}
   <DeckPosition>k__BackingField: {fileID: 7578997051717915461}
   <BoardPosition>k__BackingField: {fileID: 2034476566908356750}
-  <HandMiniGameMy>k__BackingField: {fileID: 1338685018667021208}
-  <HandMiniGameOpponent>k__BackingField: {fileID: 5348712046974562808}
-  <MyTextField>k__BackingField: {fileID: 291557469740910653}
-  <OpponentTextField>k__BackingField: {fileID: 1393504019497530059}
-  <MyStack>k__BackingField: {fileID: 3558847369660872190}
-  <OpponentStack>k__BackingField: {fileID: 1869260571037634926}
-  <Hands>k__BackingField:
-  - {fileID: 3363403285512626887}
-  - {fileID: 3291856561756262043}
+  <DuelistContainers>k__BackingField:
+  - turnType: 1
+    hand: {fileID: 3363403285512626887}
+    cardsStack: {fileID: 3558847369660872190}
+    moneyStack: {fileID: 3276765361923568737}
+    moneyText: {fileID: 291557469740910653}
+    handMiniGamePos: {fileID: 1338685018667021208}
+  - turnType: 2
+    hand: {fileID: 3291856561756262043}
+    cardsStack: {fileID: 1869260571037634926}
+    moneyStack: {fileID: 1702613315166433307}
+    moneyText: {fileID: 1393504019497530059}
+    handMiniGamePos: {fileID: 5348712046974562808}
 --- !u!1 &5619153296048039922
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +632,7 @@ Transform:
   - {fileID: 7727261702976319271}
   - {fileID: 1589354412458998295}
   - {fileID: 1338685018667021208}
+  - {fileID: 2853697820552323111}
   m_Father: {fileID: 8189168787277595647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -743,6 +796,53 @@ MonoBehaviour:
     <Variant>k__BackingField: {fileID: 3811367793748426539, guid: f155e8bc21b082f46abfa8806a4f70b1,
       type: 3}
   boardPointList: []
+--- !u!1 &7151643507084296269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4196261717127109034}
+  - component: {fileID: 1702613315166433307}
+  m_Layer: 0
+  m_Name: MoneyStack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4196261717127109034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151643507084296269}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8428613406685570072}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702613315166433307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151643507084296269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0788781af7dc194baffd955ed6c8443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.11, z: 0}
+  rotation: {x: 0, y: 90, z: 0}
+  maxHorizontalCount: 1
+  maxForwardCount: 1
 --- !u!1 &7513428989843397466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,12 +1206,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e624b06fbc13e8439dda31514d9fe26, type: 3}
---- !u!4 &1589354412458998295 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 879747808081820486, guid: 5e624b06fbc13e8439dda31514d9fe26,
-    type: 3}
-  m_PrefabInstance: {fileID: 1890377777521377617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3363403285512626887 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3789442521607234454, guid: 5e624b06fbc13e8439dda31514d9fe26,
@@ -1124,3 +1218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afdd46365274197b8df752e563731b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1589354412458998295 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 879747808081820486, guid: 5e624b06fbc13e8439dda31514d9fe26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1890377777521377617}
+  m_PrefabAsset: {fileID: 0}

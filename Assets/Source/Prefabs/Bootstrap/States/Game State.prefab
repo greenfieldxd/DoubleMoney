@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042119693754010746}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8969682755275369949
 MonoBehaviour:
@@ -73,7 +73,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042119693754010746}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8796078372575756082
 MonoBehaviour:
@@ -174,6 +174,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2710518c9254b8283c024190da76cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2537036096714726805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8800481746194365465}
+  - component: {fileID: 1133421271045184454}
+  m_Layer: 0
+  m_Name: TableMoneySystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8800481746194365465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537036096714726805}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1042119693754010746}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133421271045184454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537036096714726805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5c4ba9de084a988cad5681e7547940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyPrefab: {fileID: 8693205582217165689, guid: 67b0f1b02b0b74d4186e3eb4b78bcd19,
+    type: 3}
 --- !u!1 &3961946603573597269
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +481,7 @@ Transform:
   - {fileID: 584810660602201332}
   - {fileID: 3792825087028521379}
   - {fileID: 4462952787908260589}
+  - {fileID: 8800481746194365465}
   - {fileID: 4604862472374475111}
   - {fileID: 2196531011957580566}
   m_Father: {fileID: 0}

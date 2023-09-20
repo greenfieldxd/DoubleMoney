@@ -15,20 +15,14 @@ MonoBehaviour:
   version: 4
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_Money
   m_Shader: {fileID: 4800000, guid: a2d82c711daf5c74a9e6040320440810, type: 3}
-  m_ValidKeywords:
-  - _GRAYSCALEFRESNEL_ON
-  - _GRAYSCALESPECULAR_ON
-  - _MAPPINGGRADIENT_OBJECT_SPACE
-  - _MAPPINGTEXTURE_UV
-  m_InvalidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -110,7 +104,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - Vector1_311befbaf13e4941a3fd31f4dced2bf6: 1.15
     - Vector1_64f6f124547d4beda162af20b1abfeae: 1
@@ -175,12 +168,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.34999996, g: 0.39999998, b: 0.45, a: 1}
-    - _Color2: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.7169812, g: 0.47686014, b: 0.47686014, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 0.3383917, g: 0.4245283, b: 0.2743414, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.49991098, g: 0.7735849, b: 0.49991098, a: 1}
+    - _MainColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecColors: {r: 0.38179314, g: 0.5188679, b: 0.21293165, a: 1}
     - _Vector: {r: 0, g: 0, b: 0, a: 0}
