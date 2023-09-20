@@ -1,13 +1,16 @@
 using Kuhpik;
+using NaughtyAttributes;
 using Source.Scripts.Extensions;
 using UnityEngine;
 
 public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
 {
+    [SerializeField, BoxGroup("Settings")] string leaderboardName = "leader";
+
     LeaderboardData leaderboardData;
     public override void OnInit()
     {
-        YandexSDK.GetLB(0);
+        YandexSDK.GetLB(YandexData());
     }
     public void YandexLeaderboardData(string data)
     {
@@ -25,5 +28,16 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
                 screen.RecordList[i].PlayerName.text = name == "" ? Translator.GetText(3) : name;
             }
         }
+    }
+    string YandexData()
+    {
+        YandexData data = new YandexData()
+        {
+            ObjectName = "Game Record",
+            MethodEndName = "YandexLeaderboardData",
+            BoardName = leaderboardName
+        };
+
+        return JsonUtility.ToJson(data);
     }
 }

@@ -9,7 +9,7 @@ public class YandexLoadingSystem : GameSystemWithScreen<YandexUIScreen>
 #if UNITY_EDITOR
         UpdateState();
 #else
-        YandexSDK.LoadData();
+        YandexSDK.LoadData(YandexData());
 #endif
     }
     public void YandexLoadingData(string data)
@@ -32,5 +32,16 @@ public class YandexLoadingSystem : GameSystemWithScreen<YandexUIScreen>
         screen.LoadingPanel.SetActive(false);
 
         Bootstrap.Instance.ChangeGameState(GameStateID.Loading);
+    }
+    string YandexData()
+    {
+        YandexData data = new YandexData()
+        {
+            ObjectName = "Yandex Loading",
+            MethodEndName = "YandexLoadingData",
+            MethodErrorName = "UpdateState"
+        };
+
+        return JsonUtility.ToJson(data);
     }
 }

@@ -18,6 +18,7 @@ namespace Kuhpik
     {
         public Camera MainCamera;
         public AudioLoadingSystem AudioSystem;
+        public List<CardBackConfig> CardBackList;
 
         public DuelConfig currentDuelConfig;
         public int movesCount;

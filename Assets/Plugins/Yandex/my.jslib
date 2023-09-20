@@ -14,6 +14,34 @@ mergeInto(LibraryManager.library, {
 		})
 	},
 	
+	SaveExtern: function (_data) 
+	{
+		if (player !== null && typeof player !== 'undefined') 
+		{
+			var stringData = UTF8ToString(_data);
+			var myObj = JSON.parse(stringData);
+				
+			player.setData(myObj);
+		}
+	},
+	
+	LoadExtern: function (_data)
+	{
+		var dataJson = UTF8ToString(_data);
+		var stringData = JSON.parse(dataJson);
+	
+		if (player !== null && typeof player !== 'undefined') 
+		{
+			player.getData().then(function(_data)
+			{
+				const myJSON = JSON.stringify(_data);
+				myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName, myJSON);
+			});
+		} else {
+			myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodErrorName);
+		}
+	},
+	
 	GetLang: function ()
 	{
 		var lang = sdk.environment.i18n.lang;
@@ -32,41 +60,6 @@ mergeInto(LibraryManager.library, {
 		stringToUTF8(tld, buffer, bufferSize);
 		
 		return buffer;
-	},
-	
-	LoadExtern: function ()
-	{
-		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
-		{
-			if (player && typeof player.getData === 'function') 
-			{
-				player.getData().then(function(_data)
-				{
-					const myJSON = JSON.stringify(_data);
-					myGameInstance.SendMessage('Yandex Loading', 'YandexLoadingData', myJSON);
-				});
-			} else 
-			{
-				myGameInstance.SendMessage('Yandex Loading', 'UpdateState');
-			}
-		} else 
-		{
-			myGameInstance.SendMessage('Yandex Loading', 'UpdateState');
-		}
-	},
-	
-	SaveExtern: function (_data) 
-	{
-		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
-		{
-			if (player && typeof player.setData === 'function') 
-			{
-				var stringData = UTF8ToString(_data);
-				var myObj = JSON.parse(stringData);
-				
-				player.setData(myObj);
-			}
-		}
 	},
 	
 	RateGame: function ()
@@ -88,36 +81,60 @@ mergeInto(LibraryManager.library, {
 		});
 	},
 	
-	SetLeaderboard: function (_mode, _value)
+	SetLeaderboard: function (_data)
 	{
 		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
 		{
 			sdk.getLeaderboards().then(function(lb)
 			{
-				var _boardName = 'leader';
-				//if (_mode == 1) { _boardName = 'leaderease'; } 
-				//else if (_mode == 2) { _boardName = 'leadernormal'; } 
-				//else if (_mode == 3) { _boardName = 'leaderhard'; }			
+				var dataJson = UTF8ToString(_data);
+				var stringData = JSON.parse(dataJson);	
 				
-				lb.setLeaderboardScore(_boardName, _value);
+				lb.setLeaderboardScore(stringData.BoardName, stringData.Value);
 			});
 		}
 	},
 	
-	GetLeaderboard: function (_mode)
+	GetLeaderboard: function (_data)
 	{
 		sdk.getLeaderboards().then(function(lb)
 		{
-			var _boardName = 'leader';
-			//if (_mode == 1) { _boardName = 'leaderease'; } 
-			//else if (_mode == 2) { _boardName = 'leadernormal'; } 
-			//else if (_mode == 3) { _boardName = 'leaderhard'; }			
+			var dataJson = UTF8ToString(_data);
+			var stringData = JSON.parse(dataJson);			
 			
-			lb.getLeaderboardEntries(_boardName, { quantityTop: 5 }).then(function(res)
+			lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 5 }).then(function(res)
 			{
 				const myJSON = JSON.stringify(res);
-				myGameInstance.SendMessage('Game Record', 'YandexLeaderboardData', myJSON);
+				myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName, myJSON);
 			});
 		});
+	},
+	
+	ShowReward: function (_data)
+	{
+		var dataJson = UTF8ToString(_data);
+		var stringData = JSON.parse(dataJson);		
+	
+		sdk.adv.showRewardedVideo({
+			callbacks: {
+				onOpen: function() {
+				  console.log('Video ad open.');
+				  
+				  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodStartName);
+				},
+				onRewarded: function() {
+				  console.log('Rewarded!');
+
+				},
+				onClose: function() {
+				  console.log('Video ad closed.');
+				  
+				  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName);
+				}, 
+				onError: function(e) {
+				  console.log('Error while open video ad:', e);
+				}
+			}
+		})
 	},
 });

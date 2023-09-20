@@ -14,41 +14,6 @@ mergeInto(LibraryManager.library, {
 		})
 	},
 	
-	SaveExtern: function (_data) 
-	{
-		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
-		{
-			if (player && typeof player.setData === 'function') 
-			{
-				var stringData = UTF8ToString(_data);
-				var myObj = JSON.parse(stringData);
-				
-				player.setData(myObj);
-			}
-		}
-	},
-	
-	LoadExtern: function ()
-	{
-		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
-		{
-			if (player && typeof player.getData === 'function') 
-			{
-				player.getData().then(function(_data)
-				{
-					const myJSON = JSON.stringify(_data);
-					myGameInstance.SendMessage('Yandex Loading', 'YandexLoadingData', myJSON);
-				});
-			} else 
-			{
-				myGameInstance.SendMessage('Yandex Loading', 'StateUpdate');
-			}
-		} else 
-		{
-			myGameInstance.SendMessage('Yandex Loading', 'StateUpdate');
-		}
-	},
-	
 	GetLang: function ()
 	{
 		var lang = sdk.environment.i18n.lang;
@@ -67,6 +32,41 @@ mergeInto(LibraryManager.library, {
 		stringToUTF8(tld, buffer, bufferSize);
 		
 		return buffer;
+	},
+	
+	LoadExtern: function ()
+	{
+		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
+		{
+			if (player && typeof player.getData === 'function') 
+			{
+				player.getData().then(function(_data)
+				{
+					const myJSON = JSON.stringify(_data);
+					myGameInstance.SendMessage('Yandex Loading', 'YandexLoadingData', myJSON);
+				});
+			} else 
+			{
+				myGameInstance.SendMessage('Yandex Loading', 'UpdateState');
+			}
+		} else 
+		{
+			myGameInstance.SendMessage('Yandex Loading', 'UpdateState');
+		}
+	},
+	
+	SaveExtern: function (_data) 
+	{
+		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
+		{
+			if (player && typeof player.setData === 'function') 
+			{
+				var stringData = UTF8ToString(_data);
+				var myObj = JSON.parse(stringData);
+				
+				player.setData(myObj);
+			}
+		}
 	},
 	
 	RateGame: function ()
@@ -119,30 +119,5 @@ mergeInto(LibraryManager.library, {
 				myGameInstance.SendMessage('Game Record', 'YandexLeaderboardData', myJSON);
 			});
 		});
-	},
-	
-	GetHelp: function ()
-	{
-		sdk.adv.showRewardedVideo({
-			callbacks: {
-				onOpen: function() {
-				  console.log('Video ad open.');
-				  
-				  myGameInstance.SendMessage('Character Help', 'YandexStart');
-				},
-				onRewarded: function() {
-				  console.log('Rewarded!');
-
-				},
-				onClose: function() {
-				  console.log('Video ad closed.');
-				  
-				  myGameInstance.SendMessage('Character Help', 'YandexHelp');
-				}, 
-				onError: function(e) {
-				  console.log('Error while open video ad:', e);
-				}
-			}
-		})
 	},
 });

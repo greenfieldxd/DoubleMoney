@@ -23,6 +23,10 @@ public class Translator : MonoBehaviour
             "Paper",
             "Random",
             "Menu",
+            "Want to buy a new shirt slot?",
+            "Purchase",
+            "Want to unlock a new shirt for watching ads?",
+            "Open",
         },
         #endregion
 
@@ -39,6 +43,10 @@ public class Translator : MonoBehaviour
             "Бумага",
             "Случайно",
             "Меню",
+            "Хотите купить слот для новой рубашки?",
+            "Купить",
+            "Хотите открыть новую рубашку за просмотр рекламы?",
+            "Открыть",
         },
         #endregion
     };

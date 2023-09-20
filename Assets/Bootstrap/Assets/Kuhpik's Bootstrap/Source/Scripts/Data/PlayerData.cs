@@ -15,6 +15,8 @@ namespace Kuhpik
         public bool IsFirstLaunch;
         public bool IsSoundOff;
         public int LanguageIndex;
+        public int CardBackIndex;
+        public List<int> CardBackList;
 
         public int winsCount;
         
