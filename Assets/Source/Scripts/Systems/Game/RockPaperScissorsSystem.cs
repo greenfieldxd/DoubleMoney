@@ -82,6 +82,10 @@ namespace Source.Scripts.Systems.Game
                 screen.ButtonsHolder.transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => screen.ButtonsHolder.SetActive(false));
 
                 game.CurrentTurn = WhoWin();
+                
+                if (game.CurrentTurn == TurnType.My) CameraController.Instance.SwitchCameraWithDelay(1);
+                else if (game.CurrentTurn == TurnType.Opponent) CameraController.Instance.SwitchCameraWithDelay(0);
+                
                 screen.UpdateTurnHolder(game.CurrentTurn);
                 screen.TurnObject.SetActive(true);
                 game.movesCount++;

@@ -21,6 +21,7 @@ namespace Kuhpik
         public int winsCount;
         
         [SerializeField] private int money;
+        [SerializeField] private int recordMoney;
         public event Action OnMoneyChanged;
         public int Money
         {
@@ -32,6 +33,12 @@ namespace Kuhpik
                 
                 if (delta>0) OnMoneyChanged?.Invoke();
             }
+        }
+        
+        public int RecordMoney
+        {
+            get => recordMoney;
+            set => recordMoney = Mathf.Clamp(value,0,999999999);
         }
     }
 }

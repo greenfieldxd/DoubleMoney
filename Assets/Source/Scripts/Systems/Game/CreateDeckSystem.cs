@@ -53,8 +53,8 @@ namespace Source.Scripts.Systems.Game
                 }
                 
                 rnd.Shuffle(configsShuffle);
-                var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 0, 0));
-                card.Init(configsShuffle.First());
+                var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-6.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+                card.Init(configsShuffle.First(), game.CardBackList[player.CardBackIndex].Sprite);
                 AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, new Vector3(0,0, 180));
                 game.cardsInDeck.Push(card);
 
@@ -63,7 +63,7 @@ namespace Source.Scripts.Systems.Game
                 _yCardPos += yCardOffset;
 
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.12f);
             }
 
             yield return new WaitForSeconds(0.7f);

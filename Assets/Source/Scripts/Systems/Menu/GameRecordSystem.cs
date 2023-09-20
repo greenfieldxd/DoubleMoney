@@ -1,3 +1,4 @@
+using System.Linq;
 using Kuhpik;
 using Source.Scripts.Extensions;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
     public override void OnInit()
     {
         YandexSDK.GetLB(YandexData());
+        screen.RecordList.Last().Value.text = "$" + OtherExtensions.FormatNumberWithCommas(player.RecordMoney);
     }
     public void YandexLeaderboardData(string data)
     {
@@ -33,6 +35,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
             ObjectName = "Game Record",
             MethodEndName = "YandexLeaderboardData",
             BoardName = "leader",
+            Value = player.RecordMoney
         };
 
         return JsonUtility.ToJson(data);

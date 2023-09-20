@@ -10,6 +10,7 @@ namespace Source.Scripts.Components
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private MeshRenderer meshBase;
         [SerializeField] private MeshRenderer meshColor;
+        [SerializeField] private SpriteRenderer cardBack;
         [SerializeField] private Color tableColor;
 
         [SerializeField, BoxGroup("Debug"), ReadOnly] bool isAvailable;
@@ -19,11 +20,13 @@ namespace Source.Scripts.Components
         public CardConfig Config => _config;
         public bool IsAvailable => isAvailable;
 
-        public void Init(CardConfig config)
+        public void Init(CardConfig config, Sprite sprite)
         {
             _config = config;
             text.text = config.GetCardText();
             text.color = config.CardColor;
+            cardBack.sprite = sprite;
+            cardBack.color = config.CardColor;
             meshColor.material.color = config.CardColor;
             isAvailable = false;
         }

@@ -26,6 +26,7 @@ namespace Source.Scripts.Systems.Game
                     {
                         player.winsCount++;
                         player.Money += game.MyMoney + game.OpponentMoney;
+                        player.RecordMoney += game.MyMoney + game.OpponentMoney;
                         Bootstrap.Instance.SaveGame();
                     }
 
