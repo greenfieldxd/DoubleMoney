@@ -1,4 +1,5 @@
 using Kuhpik;
+using Source.Scripts;
 
 public class GameStartSystem : GameSystemWithScreen<MenuUIScreen>
 {
@@ -12,5 +13,6 @@ public class GameStartSystem : GameSystemWithScreen<MenuUIScreen>
         //game.AudioSystem.CreateMusic(1);
 
         Bootstrap.Instance.ChangeGameState(GameStateID.Game);
+        CameraController.Instance.SwitchCameraWithDelay(0);
     }
 }
