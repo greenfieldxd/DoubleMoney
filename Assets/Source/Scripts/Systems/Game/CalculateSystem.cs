@@ -26,8 +26,6 @@ namespace Source.Scripts.Systems.Game
             game.CurrentTurn = TurnType.None;
             var cardConfig = card.Config;
             
-            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch(turnType, cardConfig.CardType);
-            
             switch (cardConfig.CardType)
             {
                 case CardType.Add:
@@ -77,7 +75,8 @@ namespace Source.Scripts.Systems.Game
             }
 
             game.movesCount--;
-            
+            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch(turnType, cardConfig.CardType);
+
             StartCoroutine(DelayNextTurn());
         }
 
