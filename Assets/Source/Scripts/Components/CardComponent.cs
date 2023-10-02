@@ -26,7 +26,6 @@ namespace Source.Scripts.Components
             text.text = config.GetCardText();
             text.color = config.CardColor;
             cardBack.sprite = sprite;
-            cardBack.color = config.CardColor;
             meshColor.material.color = config.CardColor;
             isAvailable = false;
         }

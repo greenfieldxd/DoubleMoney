@@ -13,6 +13,7 @@ namespace Source.Scripts.Components
         [SerializeField] [BoxGroup("Stack settings")] private Vector3 rotation;
         [SerializeField] [BoxGroup("Stack settings")] private int maxHorizontalCount = 4;
         [SerializeField] [BoxGroup("Stack settings")] private int maxForwardCount = 4;
+        [SerializeField] [BoxGroup("Stack settings")] private bool addOffset;
         
         private Stack<Transform> stack = new Stack<Transform>();
         private List<PosInStack> positionsInStack = new List<PosInStack>();
@@ -82,6 +83,8 @@ namespace Source.Scripts.Components
                 forwardCount++;
                 horizontalCount = 0;
                 currentXPosition = 0;
+                
+                if (addOffset) currentYPosition += offset.y;
 
                 if (forwardCount == maxForwardCount)
                 {
