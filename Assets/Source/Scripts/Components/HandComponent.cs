@@ -10,10 +10,14 @@ namespace Source.Scripts.Components
         [field:SerializeField] public Animator Animator { get; private set; }
 
         public Vector3 StartPosition { get; private set; }
+        public Vector3 StartRotation { get; private set; }
+        public bool IsMoving { get; set; }
         
         private void Start()
         {
-            StartPosition = transform.position;
+            var tr = transform;
+            StartRotation = tr.eulerAngles;
+            StartPosition = tr.position;
         }
     }
 }

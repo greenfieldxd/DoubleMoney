@@ -22,6 +22,7 @@ namespace Kuhpik
 
         public DuelConfig currentDuelConfig;
         public int movesCount;
+        public bool clicked;
 
         [SerializeField] private TurnType currentTurnType = TurnType.None;
         [SerializeField] private int myMoney;

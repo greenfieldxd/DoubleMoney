@@ -1,4 +1,6 @@
-﻿using NaughtyAttributes;
+﻿using Kuhpik;
+using NaughtyAttributes;
+using Source.Scripts.Enums;
 using Source.Scripts.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -15,15 +17,16 @@ namespace Source.Scripts.Components
 
         [SerializeField, BoxGroup("Debug"), ReadOnly] bool isAvailable;
 
-        private CardConfig _config;
 
-        public CardConfig Config => _config;
+        public CardType CardType { get; private set; }
+        public int Value { get; private set; }
         public bool IsAvailable => isAvailable;
 
         public void Init(CardConfig config, Sprite sprite)
         {
-            _config = config;
-            text.text = config.GetCardText();
+            Value = config.CreateValue(Bootstrap.Instance.PlayerData.winsCount);
+            CardType = config.CardType;
+            text.text = config.GetCardText(Value);
             text.color = config.CardColor;
             cardBack.sprite = sprite;
             meshColor.material.color = config.CardColor;

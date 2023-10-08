@@ -19,7 +19,7 @@ namespace Source.Scripts.Systems.Game
 
         public override void OnUpdate()
         {
-            if (game.CurrentTurn != TurnType.My) return;
+            if (game.CurrentTurn != TurnType.My || game.clicked) return;
             
             if(Input.GetMouseButtonDown(0))
             {
@@ -32,6 +32,7 @@ namespace Source.Scripts.Systems.Game
 
                     if (card != null && card.IsAvailable)
                     {
+                        game.clicked = true;
                         game.cardsOnBoard.Remove(card);
                         BoardPointComponent point = game.board.BoardPointList.First(x => x.CardSlot == card);
                         point.SetCardSlot(null);

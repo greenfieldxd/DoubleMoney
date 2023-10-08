@@ -26,6 +26,7 @@ namespace Source.Scripts.Systems.Game
         {
             var hand = game.table.DuelistContainers.First(x => x.turnType == data.TurnType).hand;
             var card = data.Card;
+            hand.IsMoving = true;
 
             var afterMoveAction = new Action(() =>
             {
@@ -35,7 +36,14 @@ namespace Source.Scripts.Systems.Game
                     MoveToStack(card, data.TurnType, () =>
                     {
                         hand.Animator.SetBool(Take, false);
-                        MoveHand(hand, null, hand.StartPosition);
+                        MoveHand(hand, () =>
+                        {
+                            hand.transform.DORotate(hand.StartRotation, 0.1f).OnComplete(() =>
+                            {
+                                game.clicked = false;
+                                hand.IsMoving = false;
+                            });
+                        }, hand.StartPosition);
                     });
                 }));
             });
@@ -50,19 +58,23 @@ namespace Source.Scripts.Systems.Game
             action?.Invoke();
         }
 
-        private void MoveHand(HandComponent hand, Action action, Vector3 position, Transform parent = null)
+        private void MoveHand(HandComponent hand, Action onComplete, Vector3 position, Transform parent = null)
         {
             if (parent != null)
             {
                 hand.transform.SetParent(parent);
-                hand.transform.DOLocalMove(position, handMoveDuration).OnComplete(() => action?.Invoke());
+                hand.transform.DOLocalMove(position, handMoveDuration).OnComplete(() => onComplete?.Invoke());
             }
-            else hand.transform.DOMove(position, handMoveDuration).OnComplete(() => action?.Invoke());
+            else
+            {
+                hand.transform.SetParent(null);
+                hand.transform.DOMove(position, handMoveDuration).OnComplete(() => onComplete?.Invoke());
+            }
         }
 
         private void MoveToStack(CardComponent card, TurnType turnType, Action onComplete)
         {
-            var cardType = card.Config.CardType;
+            var cardType = card.CardType;
             var myStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.My).cardsStack;
             var opponentStackStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).cardsStack;
             

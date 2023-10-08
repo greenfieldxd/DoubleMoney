@@ -14,7 +14,9 @@ namespace Source.Scripts.Systems.Game
 {
     public class InitGameSystem : GameSystemWithScreen<GameUIScreen>
     {
-        private float _oldValue;
+        [SerializeField] private int startMoney = 10;
+        
+        private int _startMoney;
         
         public override void OnInit()
         {
@@ -24,8 +26,9 @@ namespace Source.Scripts.Systems.Game
             game.OnOpponentMoneyChanged += UpdateOpponentMoney;
 
             game.currentDuelConfig = GetDuelConfig();
-            game.MyMoney = game.currentDuelConfig.StartMoneyCount;
-            game.OpponentMoney = game.currentDuelConfig.StartMoneyCount;
+            _startMoney = RoundUp(Mathf.Clamp(UnityEngine.Random.Range(startMoney, startMoney * (player.winsCount + 1)), 0, 1000));
+            game.MyMoney = _startMoney;
+            game.OpponentMoney = _startMoney;
         }
 
         private void UpdateTableMoney()
@@ -42,6 +45,15 @@ namespace Source.Scripts.Systems.Game
                 var rng = new Random();
                 rng.Shuffle(canGetVariants);
                 return canGetVariants.First();
+        }
+        
+        private int RoundUp(int val)
+        {
+            int tmp = 0;
+            int number = val;
+            if ((tmp = number % 10) != 0) number += number > -1 ? 10 - tmp : -tmp;
+            
+            return number;
         }
 
         private void UpdateMyMoney(int oldValue)

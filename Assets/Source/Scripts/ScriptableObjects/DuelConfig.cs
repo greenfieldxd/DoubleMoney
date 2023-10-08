@@ -14,12 +14,9 @@ namespace Source.Scripts.ScriptableObjects
         [SerializeField] [BoxGroup("Board Type")] private BoardType boardType;
         [SerializeField] [BoxGroup("Other Settings")] private int roundCount;
         [SerializeField] [BoxGroup("Other Settings")] private int neededWins;
-        [SerializeField] [BoxGroup("Other Settings")] private int startMoneyCount = 10;
 
         public BoardType BoardType => boardType;
         public int RoundCount => roundCount;
         public int NeededWins => neededWins;
-
-        public int StartMoneyCount => startMoneyCount;
     }
 }

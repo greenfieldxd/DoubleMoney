@@ -30,8 +30,10 @@ namespace Source.Scripts.Systems.Game
 
         private IEnumerator SearchRoutine()
         {
+            HandComponent hand = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).hand;
             CardComponent card = null;
 
+            yield return new WaitUntil(() => !hand.IsMoving);
             yield return new WaitForSeconds(Random.Range(minWaitDelay, maxWaitDelay));
 
             while (card == null)
@@ -69,7 +71,7 @@ namespace Source.Scripts.Systems.Game
         {
             var randomType = types.GetRandom();
 
-            var card = cards.FirstOrDefault(x => x.Config.CardType == randomType);
+            var card = cards.FirstOrDefault(x => x.CardType == randomType);
             return card != null ? card : null;
         }
     }

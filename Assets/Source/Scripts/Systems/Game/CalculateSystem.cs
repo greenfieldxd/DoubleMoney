@@ -24,58 +24,59 @@ namespace Source.Scripts.Systems.Game
         {
             _prevTurnType = turnType;
             game.CurrentTurn = TurnType.None;
-            var cardConfig = card.Config;
+            var configValue = card.Value;
+            Debug.Log("Card value is " + configValue);
             
-            switch (cardConfig.CardType)
+            switch (card.CardType)
             {
                 case CardType.Add:
-                    if (turnType == TurnType.My) game.MyMoney += (int)cardConfig.Value;
-                    else if (turnType == TurnType.Opponent) game.OpponentMoney += (int)cardConfig.Value;
+                    if (turnType == TurnType.My) game.MyMoney += configValue;
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney += configValue;
                     break;
                 
                 case CardType.Multiply:
-                    if (turnType == TurnType.My) game.MyMoney *= (int)cardConfig.Value;
-                    else if (turnType == TurnType.Opponent) game.OpponentMoney *= (int)cardConfig.Value;
+                    if (turnType == TurnType.My) game.MyMoney = Mathf.RoundToInt(game.MyMoney * configValue);
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney * configValue);
                     break;
                 
                 case CardType.Divide:
-                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney / cardConfig.Value);
-                    else if (turnType == TurnType.Opponent) game.MyMoney = Mathf.RoundToInt(game.MyMoney / cardConfig.Value);
+                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney / configValue);
+                    else if (turnType == TurnType.Opponent) game.MyMoney = Mathf.RoundToInt(game.MyMoney / configValue);
                     break;
                 
                 case CardType.AddPercentage:
-                    if (turnType == TurnType.My) game.MyMoney = Mathf.RoundToInt(game.MyMoney + game.MyMoney * cardConfig.Value / 100);
-                    else if (turnType == TurnType.Opponent) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney + game.OpponentMoney * cardConfig.Value / 100);
+                    if (turnType == TurnType.My) game.MyMoney = Mathf.RoundToInt(game.MyMoney + game.MyMoney * configValue / 100);
+                    else if (turnType == TurnType.Opponent) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney + game.OpponentMoney * configValue / 100);
                     break;
                 
                 case CardType.SubtractPercentage:
-                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney - game.OpponentMoney * cardConfig.Value / 100);
-                    else if (turnType == TurnType.Opponent)game.MyMoney = Mathf.RoundToInt(game.MyMoney - game.MyMoney * cardConfig.Value / 100);
+                    if (turnType == TurnType.My) game.OpponentMoney = Mathf.RoundToInt(game.OpponentMoney - game.OpponentMoney * configValue / 100);
+                    else if (turnType == TurnType.Opponent)game.MyMoney = Mathf.RoundToInt(game.MyMoney - game.MyMoney * configValue / 100);
                     break;
                 
                 case CardType.StealPercentage:
                     if (turnType == TurnType.My)
                     {
-                        var value = Mathf.RoundToInt(game.OpponentMoney * cardConfig.Value / 100);
+                        var value = Mathf.RoundToInt(game.OpponentMoney * (float)configValue / 100);
                         game.OpponentMoney -= value;
                         game.MyMoney += value;
                     }
                     else if (turnType == TurnType.Opponent)
                     {
-                        var value = Mathf.RoundToInt(game.MyMoney * cardConfig.Value / 100);
+                        var value = Mathf.RoundToInt(game.MyMoney * (float)configValue / 100);
                         game.MyMoney -= value;
                         game.OpponentMoney += value;
                     }
                     break;
                 
                 case CardType.AddMove:
-                    if (turnType == TurnType.My) game.movesCount += (int) cardConfig.Value;
-                    else if (turnType == TurnType.Opponent) game.movesCount += (int) cardConfig.Value;
+                    if (turnType == TurnType.My) game.movesCount += configValue;
+                    else if (turnType == TurnType.Opponent) game.movesCount += configValue;
                     break;
             }
 
             game.movesCount--;
-            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch(turnType, cardConfig.CardType);
+            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch(turnType, card.CardType);
 
             StartCoroutine(DelayNextTurn());
         }
