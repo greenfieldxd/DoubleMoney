@@ -3,7 +3,7 @@ using Supyrb;
 
 namespace Source.Scripts.Signals
 {
-    public class AddTableMoneySignal : Signal<TurnType, CardType>
+    public class AddTableMoneySignal : Signal
     {
         
     }

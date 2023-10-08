@@ -16,7 +16,6 @@ namespace Source.Scripts.Systems.Game
     {
         [SerializeField] private int startMoney = 10;
         
-        private int _startMoney;
         
         public override void OnInit()
         {
@@ -26,9 +25,9 @@ namespace Source.Scripts.Systems.Game
             game.OnOpponentMoneyChanged += UpdateOpponentMoney;
 
             game.currentDuelConfig = GetDuelConfig();
-            _startMoney = RoundUp(Mathf.Clamp(UnityEngine.Random.Range(startMoney, startMoney * (player.winsCount + 1)), 0, 1000));
-            game.MyMoney = _startMoney;
-            game.OpponentMoney = _startMoney;
+            game.startMoney = RoundUp(Mathf.Clamp(UnityEngine.Random.Range(startMoney, startMoney * (player.winsCount + 1)), 0, 1000));
+            game.MyMoney = game.startMoney;
+            game.OpponentMoney = game.startMoney;
         }
 
         private void UpdateTableMoney()

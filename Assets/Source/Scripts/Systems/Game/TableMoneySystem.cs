@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Kuhpik;
 using Lean.Pool;
 using Source.Scripts.Components;
@@ -12,73 +13,37 @@ namespace Source.Scripts.Systems.Game
     {
         [SerializeField] private MoneyComponent moneyPrefab;
 
-        private int _changeValue;
-        private int _moneyValue;
+        private float _moneyValue;
         
         public override void OnInit()
         {
             Supyrb.Signals.Get<AddTableMoneySignal>().AddListener(AddTableMoney);
+            AddTableMoney();
+        }
+
+        private void AddTableMoney()
+        {
+            Money(TurnType.My);
+            Money(TurnType.Opponent);
+        }
+        
+        private void Money(TurnType turnType)
+        {
+            var stack = game.table.DuelistContainers.First(x => x.turnType == turnType).moneyStack;
             
-            var myStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.My).moneyStack;
-            var opponentStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).moneyStack;
-            _moneyValue = Random.Range(1, 4);
-            Money(myStack, true);
-            Money(opponentStack, true);
-        }
+            if (turnType == TurnType.My) _moneyValue =  game.MyMoney / (float)game.startMoney;
+            else if (turnType == TurnType.Opponent) _moneyValue = game.OpponentMoney / (float)game.startMoney;
 
-        private void AddTableMoney(TurnType turnType, CardType cardType)
-        {
-            var myStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.My).moneyStack;
-            var opponentStack = game.table.DuelistContainers.First(x => x.turnType == TurnType.Opponent).moneyStack;
-            _changeValue = Mathf.Clamp(Mathf.Abs(myStack.ItemsCount - opponentStack.ItemsCount), 1, 5);
-            CalculateMoneyValue(turnType);
+            var delta = Mathf.Abs(stack.ItemsCount - _moneyValue);
+            var isAdd = stack.ItemsCount < _moneyValue;
+            
+            Debug.Log("Money value: " + _moneyValue);
+            Debug.Log("Delta: " + delta);
+            Debug.Log("IsAdd: " + isAdd);
+            
+            if (Math.Abs(delta) < 1) return;
 
-            switch (cardType)
-            {
-                case CardType.Add:
-                    Money(turnType == TurnType.My ? myStack : opponentStack, true);
-                    break;
-                
-                case CardType.Multiply:
-                    Money(turnType == TurnType.My ? myStack : opponentStack, true);
-                    break;
-                
-                case CardType.Divide:
-                    Money(turnType == TurnType.My ? opponentStack : myStack, false);
-                    break;
-                
-                case CardType.AddPercentage:
-                    Money(turnType == TurnType.My ? myStack : opponentStack, true);
-                    break;
-                
-                case CardType.SubtractPercentage:
-                    Money(turnType == TurnType.My ? opponentStack : myStack, false);
-                    break;
-                
-                case CardType.StealPercentage:
-                    if (turnType == TurnType.My)
-                    {
-                        Money(myStack, true);
-                        Money(opponentStack, false);
-                    }
-                    else if (turnType == TurnType.Opponent)
-                    {
-                        Money(opponentStack, true);
-                        Money(myStack, false);
-                    }
-                    break;
-            }
-        }
-
-        private void CalculateMoneyValue(TurnType turnType)
-        {
-            if (turnType == TurnType.My) _moneyValue =  game.MyMoney > game.OpponentMoney ? _changeValue + 1 : _changeValue - 1;
-            else if (turnType == TurnType.Opponent) _moneyValue =  game.OpponentMoney > game.MyMoney ? _changeValue + 1 : _changeValue - 1;
-        }
-
-        private void Money(StackComponent stack, bool isAdd)
-        {
-            for (int i = 0; i < _moneyValue; i++)
+            for (int i = 0; i < delta; i++)
             {
                 if (isAdd)
                 {

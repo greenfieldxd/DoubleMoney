@@ -18,28 +18,14 @@ namespace Source.Scripts.Systems.Game
             if (game.cardsOnBoard.Count == 0)
             {
                 if (game.cardsInDeck.Count > 0) Supyrb.Signals.Get<GetCardsFromDeckSignal>().Dispatch();
-                else
-                {
-                    var victory = game.MyMoney > game.OpponentMoney;
-                    
-                    if (victory)
-                    {
-                        player.winsCount++;
-                        player.Money += game.MyMoney + game.OpponentMoney;
-                        player.RecordMoney += game.MyMoney + game.OpponentMoney;
-                        Bootstrap.Instance.SaveGame();
-                    }
-
-                    StartCoroutine(GameRestart());
-                }
+                else StartCoroutine(Result());
             }
         }
 
-        private IEnumerator GameRestart()
+        private IEnumerator Result()
         {
             yield return new WaitForSeconds(restartDelay);
-            
-            Bootstrap.Instance.GameRestart(0);
+            Bootstrap.Instance.ChangeGameState(GameStateID.Result);
         }
     }
 }

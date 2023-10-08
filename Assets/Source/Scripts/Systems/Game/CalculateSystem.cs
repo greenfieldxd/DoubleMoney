@@ -76,7 +76,7 @@ namespace Source.Scripts.Systems.Game
             }
 
             game.movesCount--;
-            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch(turnType, card.CardType);
+            Supyrb.Signals.Get<AddTableMoneySignal>().Dispatch();
 
             StartCoroutine(DelayNextTurn());
         }
