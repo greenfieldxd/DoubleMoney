@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beaa5cf192e2499caba78968b06178a0, type: 3}
-  m_Name: Free 2
+  m_Name: DuelConfig 010
   m_EditorClassIdentifier: 
-  boardType: 0
+  boardType: 2
   roundCount: 2
-  neededWins: 4
-  startMoneyCount: 25
+  neededWins: 15
+  startMoneyCount: 125

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d988480f463b6a418dd36c41e9b82bd, type: 3}
   m_Name: Card Back 007
   m_EditorClassIdentifier: 
-  price: 250000
+  price: 100000
   sprite: {fileID: -6081611462039590206, guid: 7347d15f1c7e782479104549682fa55a, type: 3}

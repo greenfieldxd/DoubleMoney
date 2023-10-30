@@ -1,5 +1,6 @@
 using Kuhpik;
 using NaughtyAttributes;
+using Source.Scripts.Extensions;
 using UnityEngine;
 
 public class SettingsLoadingSystem : GameSystem
@@ -26,6 +27,6 @@ public class SettingsLoadingSystem : GameSystem
         player.IsFirstLaunch = true;
         player.LanguageIndex = -1;
 
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
     }
 }

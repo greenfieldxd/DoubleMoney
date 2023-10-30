@@ -1,5 +1,6 @@
 using Kuhpik;
 using NaughtyAttributes;
+using Source.Scripts.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,6 @@ public class CardBackLoadingSystem : GameSystem
             player.CardBackList.Add(0);
         }
 
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
     }
 }

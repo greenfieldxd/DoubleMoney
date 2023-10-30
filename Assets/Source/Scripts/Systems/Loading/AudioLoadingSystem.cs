@@ -1,5 +1,6 @@
 using Kuhpik;
 using NaughtyAttributes;
+using Source.Scripts.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -27,7 +28,7 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
         player.IsSoundOff = !player.IsSoundOff;
 
         UpdateAudioMixer(player.IsSoundOff);
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
     }
     public void CreateSound(int index, float time = 1f)
     {
@@ -59,7 +60,7 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
         UpdateSound();
         CreateSound(0);
 
-        Extensions.TransformPunchScale(screen.SoundButton.transform);
+        OtherExtensions.TransformPunchScale(screen.SoundButton.transform);
     }
     void UpdateAudioMixer(bool isStatus)
     {

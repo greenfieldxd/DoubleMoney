@@ -1,4 +1,6 @@
 ﻿using Kuhpik;
+using Source.Scripts.Extensions;
+using UnityEngine;
 
 namespace Source.Scripts.Systems.Game
 {
@@ -18,8 +20,23 @@ namespace Source.Scripts.Systems.Game
                 player.winsCount++;
                 player.Money += game.MyMoney + game.OpponentMoney;
                 player.RecordMoney += game.MyMoney + game.OpponentMoney;
-                Bootstrap.Instance.SaveGame();
+                OtherExtensions.SaveGame(player);
+
+                YandexSDK.SetLB(YandexData());
             }
+
+            //test
+            Bootstrap.Instance.GameRestart(0);
+        }
+        string YandexData()
+        {
+            YandexData data = new YandexData()
+            {
+                BoardName = "leader",
+                Value = player.RecordMoney
+            };
+
+            return JsonUtility.ToJson(data);
         }
     }
 }

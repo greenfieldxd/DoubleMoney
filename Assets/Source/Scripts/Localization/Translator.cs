@@ -27,6 +27,8 @@ public class Translator : MonoBehaviour
             "Purchase",
             "Want to unlock a new shirt for watching ads?",
             "Open",
+            "your move",
+            "opponent move",
         },
         #endregion
 
@@ -47,6 +49,8 @@ public class Translator : MonoBehaviour
             "Купить",
             "Хотите открыть новую рубашку за просмотр рекламы?",
             "Открыть",
+            "твой ход",
+            "ход противника",
         },
         #endregion
     };

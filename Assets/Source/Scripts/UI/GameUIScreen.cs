@@ -12,7 +12,7 @@ namespace Source.Scripts.UI
     public class GameUIScreen : UIScreen
     {
         [field:SerializeField] public GameObject TurnObject { get; private set; }
-        [field:SerializeField] public TextMeshProUGUI TurnText { get; private set; }
+        [field:SerializeField] public TranslateText TurnText { get; private set; }
         [field:SerializeField] public Image TurnImage { get; private set; }
         [field:SerializeField] public Color ColorRed { get; private set; }
         [field:SerializeField] public Color ColorGreen { get; private set; }
@@ -27,12 +27,12 @@ namespace Source.Scripts.UI
             {
                 case TurnType.My:
                     TurnImage.color = ColorGreen;
-                    TurnText.text = "your move";
+                    TurnText.SetIndex(15);
                     break;
                 
                 case TurnType.Opponent:
                     TurnImage.color = ColorRed;
-                    TurnText.text = "opponent move";
+                    TurnText.SetIndex(16);
                     break;
                 
             }

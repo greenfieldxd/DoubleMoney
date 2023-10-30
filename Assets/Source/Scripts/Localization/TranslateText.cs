@@ -27,5 +27,6 @@ public class TranslateText : MonoBehaviour
     public void SetIndex(int index)
     {
         textID = index;
+        Translator.UpdateText();
     }
 }

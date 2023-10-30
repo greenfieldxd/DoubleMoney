@@ -28,7 +28,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
     public void YandexRewardedEnd()
     {
         player.CardBackList[cardBackIndex] = 2;
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
     }
@@ -61,7 +61,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
             screen.PanelList[3].SetActive(true);
         }
 
-        Extensions.TransformPunchScale(button);
+        OtherExtensions.TransformPunchScale(button);
         game.AudioSystem.CreateSound(0);
     }
     void OnCardAdOpen(Transform button)
@@ -71,7 +71,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         screen.PanelList[2].SetActive(true);
         screen.PanelList[4].SetActive(true);
 
-        Extensions.TransformPunchScale(button);
+        OtherExtensions.TransformPunchScale(button);
         game.AudioSystem.CreateSound(0);
     }
     void OnCardSelect(Transform button)
@@ -81,11 +81,11 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         if (player.CardBackList[index] != 2) return;
 
         player.CardBackIndex = index;
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
 
-        Extensions.TransformPunchScale(button);
+        OtherExtensions.TransformPunchScale(button);
         game.AudioSystem.CreateSound(0);
     }
     void OnCardBuy(Transform button)
@@ -94,12 +94,12 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         player.Money -= price;
 
         player.CardBackList[cardBackIndex] = 1;
-        Extensions.SaveGame(player);
+        OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
         CloseInfoPanel();
 
-        Extensions.TransformPunchScale(button);
+        OtherExtensions.TransformPunchScale(button);
         game.AudioSystem.CreateSound(0);
     }
     void UpdateCardBack()
@@ -129,18 +129,18 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         UpdateCardBack();
 
         game.AudioSystem.CreateSound(0);
-        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
+        YandexSDK.ShowInterstitial(OtherExtensions.YandexAdData());
         screen.SetPanelActive(1);
     }
     void ClosePanel()
     {
         game.AudioSystem.CreateSound(0);
-        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
+        YandexSDK.ShowInterstitial(OtherExtensions.YandexAdData());
         screen.SetPanelActive(0);
     }
     void CloseInfoPanel()
     {
-        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
+        YandexSDK.ShowInterstitial(OtherExtensions.YandexAdData());
         screen.SetPanelActive(1);
     }
     string YandexData()

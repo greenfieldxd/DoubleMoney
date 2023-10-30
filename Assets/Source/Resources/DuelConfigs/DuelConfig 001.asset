@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beaa5cf192e2499caba78968b06178a0, type: 3}
-  m_Name: Pyramid 2
+  m_Name: DuelConfig 001
   m_EditorClassIdentifier: 
-  boardType: 1
-  roundCount: 3
-  neededWins: 8
-  startMoneyCount: 100
+  boardType: 0
+  roundCount: 1
+  neededWins: 0

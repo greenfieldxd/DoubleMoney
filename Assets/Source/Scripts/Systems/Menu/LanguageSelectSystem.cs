@@ -1,4 +1,5 @@
 using Kuhpik;
+using Source.Scripts.Extensions;
 
 public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
 {
@@ -18,8 +19,8 @@ public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
         UpdateLanguage();
         game.AudioSystem.CreateSound(0);
 
-        Extensions.SaveGame(player);
-        Extensions.TransformPunchScale(screen.LanguageButton.transform);
+        OtherExtensions.SaveGame(player);
+        OtherExtensions.TransformPunchScale(screen.LanguageButton.transform);
     }
     void SelectLanguage()
     {
