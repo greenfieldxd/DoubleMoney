@@ -20,13 +20,13 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
 
         screen.SoundButton.onClick.AddListener(OnUpdateSound);
 
-        UpdateAudioMixer();
+        UpdateAudioMixer(player.IsSoundOff);
     }
     public void UpdateSound()
     {
         player.IsSoundOff = !player.IsSoundOff;
 
-        UpdateAudioMixer();
+        UpdateAudioMixer(player.IsSoundOff);
         Extensions.SaveGame(player);
     }
     public void CreateSound(int index, float time = 1f)
@@ -42,6 +42,18 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
         musicSource = Instantiate(audioList[index]).GetComponent<AudioSource>();
         musicSource.Play();
     }
+    public void YandexInterstitialStart()
+    {
+        if (player.IsSoundOff) return;
+
+        UpdateAudioMixer(true);
+    }
+    public void YandexInterstitialEnd()
+    {
+        if (player.IsSoundOff) return;
+
+        UpdateAudioMixer(false);
+    }
     void OnUpdateSound()
     {
         UpdateSound();
@@ -49,11 +61,11 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
 
         Extensions.TransformPunchScale(screen.SoundButton.transform);
     }
-    void UpdateAudioMixer()
+    void UpdateAudioMixer(bool isStatus)
     {
-        audioMixer.audioMixer.SetFloat("Music", player.IsSoundOff ? -80 : 0);
-        audioMixer.audioMixer.SetFloat("Sound", player.IsSoundOff ? -80 : 0);
-        audioMixer.audioMixer.SetFloat("UI", player.IsSoundOff ? -80 : 0);
+        audioMixer.audioMixer.SetFloat("Music", isStatus ? -80 : 0);
+        audioMixer.audioMixer.SetFloat("Sound", isStatus ? -80 : 0);
+        audioMixer.audioMixer.SetFloat("UI", isStatus ? -80 : 0);
 
         screen.SoundImage.sprite = screen.SoundSpriteList[player.IsSoundOff ? 0 : 1];
         screen.SoundImage.SetNativeSize();

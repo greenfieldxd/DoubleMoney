@@ -1,17 +1,26 @@
 mergeInto(LibraryManager.library, {
 
-	ShowAd: function () 
+	ShowAd: function (_data) 
 	{
-		sdk.adv.showFullscreenAdv({
-			callbacks: {
-				onClose: function(wasShown) {
-					// some action after close
-				},
-				onError: function(error) {
-					// some action on error
+		var dataJson = UTF8ToString(_data);
+		var stringData = JSON.parse(dataJson);	
+		
+		if (sdk !== null && typeof sdk !== 'undefined') 
+		{
+			sdk.adv.showFullscreenAdv({
+				callbacks: {
+					onOpen: function() {
+						myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodStartName);
+					},
+					onClose: function(wasShown) {
+						myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName);
+					},
+					onError: function(error) {
+						// some action on error
+					}
 				}
-			}
-		})
+			})
+		}
 	},
 	
 	SaveExtern: function (_data) 
@@ -44,54 +53,66 @@ mergeInto(LibraryManager.library, {
 	
 	GetLang: function ()
 	{
-		var lang = sdk.environment.i18n.lang;
-		var bufferSize = lengthBytesUTF8(lang) + 1;
-		var buffer = _malloc(bufferSize);
-		stringToUTF8(lang, buffer, bufferSize);
-		
-		return buffer;
+		if (sdk !== null && typeof sdk !== 'undefined') 
+		{
+			var lang = sdk.environment.i18n.lang;
+			var bufferSize = lengthBytesUTF8(lang) + 1;
+			var buffer = _malloc(bufferSize);
+			stringToUTF8(lang, buffer, bufferSize);
+			
+			return buffer;
+		}
 	},
 	
 	GetTLD: function ()
 	{
-		var tld = sdk.environment.i18n.tld;
-		var bufferSize = lengthBytesUTF8(tld) + 1;
-		var buffer = _malloc(bufferSize);
-		stringToUTF8(tld, buffer, bufferSize);
-		
-		return buffer;
+		if (sdk !== null && typeof sdk !== 'undefined') 
+		{
+			var tld = sdk.environment.i18n.tld;
+			var bufferSize = lengthBytesUTF8(tld) + 1;
+			var buffer = _malloc(bufferSize);
+			stringToUTF8(tld, buffer, bufferSize);
+			
+			return buffer;
+		}
 	},
 	
 	RateGame: function ()
 	{
-		sdk.feedback.canReview().then(function(response)
+		if (sdk !== null && typeof sdk !== 'undefined') 
 		{
-			var value = response.value;
-			var reason = response.reason;
-			
-			if (value) {
-				sdk.feedback.requestReview().then(function(response) 
-				{
-					var feedbackSent = response.feedbackSent;
-					console.log(feedbackSent);
-				});
-			} else {
-				console.log(reason);
-			}
-		});
+			sdk.feedback.canReview().then(function(response)
+			{
+				var value = response.value;
+				var reason = response.reason;
+				
+				if (value) {
+					sdk.feedback.requestReview().then(function(response) 
+					{
+						var feedbackSent = response.feedbackSent;
+						console.log(feedbackSent);
+					});
+				} else {
+					console.log(reason);
+				}
+			});
+		}
 	},
 	
 	SetLeaderboard: function (_data)
 	{
-		if (sdk.isAvailableMethod('player.getIDsPerGame')) 
+		if (sdk !== null && typeof sdk !== 'undefined') 
 		{
-			var dataJson = UTF8ToString(_data);
-			var stringData = JSON.parse(dataJson);
-		
-			sdk.getLeaderboards().then(function(lb)
+			if (sdk.isAvailableMethod('player.getIDsPerGame')) 
 			{
-				lb.setLeaderboardScore(stringData.BoardName, stringData.Value);
-			});
+				var dataJson = UTF8ToString(_data);
+				var stringData = JSON.parse(dataJson);
+			
+				sdk.getLeaderboards().then(function(lb)
+				{
+					lb.setLeaderboardScore(stringData.BoardName, stringData.Value);
+				});
+			}
 		}
 	},
 	
@@ -100,14 +121,17 @@ mergeInto(LibraryManager.library, {
 		var dataJson = UTF8ToString(_data);
 		var stringData = JSON.parse(dataJson);
 		
-		sdk.getLeaderboards().then(function(lb)
+		if (sdk !== null && typeof sdk !== 'undefined') 
 		{
-			lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 5 }).then(function(res)
+			sdk.getLeaderboards().then(function(lb)
 			{
-				const myJSON = JSON.stringify(res);
-				myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName, myJSON);
+				lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 10 }).then(function(res)
+				{
+					const myJSON = JSON.stringify(res);
+					myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName, myJSON);
+				});
 			});
-		});
+		}
 	},
 	
 	ShowReward: function (_data)
@@ -115,26 +139,29 @@ mergeInto(LibraryManager.library, {
 		var dataJson = UTF8ToString(_data);
 		var stringData = JSON.parse(dataJson);		
 	
-		sdk.adv.showRewardedVideo({
-			callbacks: {
-				onOpen: function() {
-				  console.log('Video ad open.');
-				  
-				  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodStartName);
-				},
-				onRewarded: function() {
-				  console.log('Rewarded!');
+		if (sdk !== null && typeof sdk !== 'undefined') 
+		{
+			sdk.adv.showRewardedVideo({
+				callbacks: {
+					onOpen: function() {
+					  console.log('Video ad open.');
+					  
+					  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodStartName);
+					},
+					onRewarded: function() {
+					  console.log('Rewarded!');
 
-				},
-				onClose: function() {
-				  console.log('Video ad closed.');
-				  
-				  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName);
-				}, 
-				onError: function(e) {
-				  console.log('Error while open video ad:', e);
+					},
+					onClose: function() {
+					  console.log('Video ad closed.');
+					  
+					  myGameInstance.SendMessage(stringData.ObjectName, stringData.MethodEndName);
+					}, 
+					onError: function(e) {
+					  console.log('Error while open video ad:', e);
+					}
 				}
-			}
-		})
+			})
+		}
 	},
 });

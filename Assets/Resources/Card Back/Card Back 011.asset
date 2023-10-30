@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d988480f463b6a418dd36c41e9b82bd, type: 3}
-  m_Name: Card Back 003
+  m_Name: Card Back 011
   m_EditorClassIdentifier: 
-  price: 10000
-  sprite: {fileID: 5089713165793692188, guid: 7347d15f1c7e782479104549682fa55a, type: 3}
+  price: 5000000
+  sprite: {fileID: 2748799819732492174, guid: 7347d15f1c7e782479104549682fa55a, type: 3}

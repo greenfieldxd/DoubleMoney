@@ -4,7 +4,7 @@ using UnityEngine;
 public class YandexSDK
 {
     [DllImport("__Internal")]
-    private static extern void ShowAd();
+    private static extern void ShowAd(string data);
 
     [DllImport("__Internal")]
     private static extern void LoadExtern(string data);
@@ -30,12 +30,12 @@ public class YandexSDK
     [DllImport("__Internal")]
     private static extern void ShowReward(string data);
 
-    public static void ShowInterstitial()
+    public static void ShowInterstitial(string data)
     {
 #if UNITY_EDITOR
         Debug.Log("YandexSDK: ShowInterstitial");
 #else
-        ShowAd();
+        ShowAd(data);
 #endif
     }
     public static void SaveData(string data)

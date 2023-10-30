@@ -102,10 +102,6 @@ mergeInto(LibraryManager.library, {
 		
 		sdk.getLeaderboards().then(function(lb)
 		{
-			window.alert(_data);
-			window.alert(dataJson);
-			window.alert(stringData);			
-			
 			lb.getLeaderboardEntries(stringData.BoardName, { quantityTop: 5 }).then(function(res)
 			{
 				const myJSON = JSON.stringify(res);

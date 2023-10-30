@@ -129,18 +129,18 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         UpdateCardBack();
 
         game.AudioSystem.CreateSound(0);
-        YandexSDK.ShowInterstitial();
+        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
         screen.SetPanelActive(1);
     }
     void ClosePanel()
     {
         game.AudioSystem.CreateSound(0);
-        YandexSDK.ShowInterstitial();
+        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
         screen.SetPanelActive(0);
     }
     void CloseInfoPanel()
     {
-        YandexSDK.ShowInterstitial();
+        YandexSDK.ShowInterstitial(Extensions.YandexAdData());
         screen.SetPanelActive(1);
     }
     string YandexData()

@@ -19,4 +19,15 @@ public class Extensions
         var @string = JsonUtility.ToJson(data);
         YandexSDK.SaveData(@string);
     }
+    public static string YandexAdData()
+    {
+        YandexData data = new YandexData()
+        {
+            ObjectName = "Audio Loading",
+            MethodStartName = "YandexInterstitialStart",
+            MethodEndName = "YandexInterstitialEnd",
+        };
+
+        return JsonUtility.ToJson(data);
+    }
 }
