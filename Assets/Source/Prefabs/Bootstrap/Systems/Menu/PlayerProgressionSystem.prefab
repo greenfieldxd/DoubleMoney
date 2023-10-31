@@ -57,3 +57,27 @@ MonoBehaviour:
       type: 3}
     neededMoney: 1000
     camDistance: 10
+  - prefab: {fileID: 5932074780652485820, guid: 2b7a68e0713c7894cb8c176166cb20a5,
+      type: 3}
+    neededMoney: 10000
+    camDistance: 10
+  - prefab: {fileID: 5932074780652485820, guid: d7c1fedf653f65442b7a2df8d22ca07e,
+      type: 3}
+    neededMoney: 25000
+    camDistance: 10
+  - prefab: {fileID: 5932074780652485820, guid: 436c13d15fca2f74ab48978680ad163e,
+      type: 3}
+    neededMoney: 100000
+    camDistance: 10
+  - prefab: {fileID: 5932074780652485820, guid: 897ea6b2d75f2504dbb7a9fa16b56877,
+      type: 3}
+    neededMoney: 500000
+    camDistance: 15
+  - prefab: {fileID: 5932074780652485820, guid: 99a9f1ae89b53e644b1f1f513c831874,
+      type: 3}
+    neededMoney: 1000000
+    camDistance: 20
+  - prefab: {fileID: 5932074780652485820, guid: a168999b701749441bf5d7f52b82d5c8,
+      type: 3}
+    neededMoney: 10000000
+    camDistance: 40
