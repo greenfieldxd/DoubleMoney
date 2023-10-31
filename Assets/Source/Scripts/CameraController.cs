@@ -8,7 +8,7 @@ namespace Source.Scripts
 {
     public class CameraController : Singleton<CameraController>
     {
-        [SerializeField] private CinemachineVirtualCamera[] otherCameras;
+        [SerializeField] private CinemachineVirtualCamera[] cameras;
         
         
         public void SwitchCameraWithDelay(int index, float delay = 0, float actionDelay = 0, Action action = null)
@@ -18,9 +18,9 @@ namespace Source.Scripts
 
         private void Switch(int index)
         {
-            for (int i = 0; i < otherCameras.Length; i++)
+            for (int i = 0; i < cameras.Length; i++)
             {
-                var cam = otherCameras[i];
+                var cam = cameras[i];
                 cam.Priority = i == index ? 10 : 0;
             }
         }
@@ -35,9 +35,9 @@ namespace Source.Scripts
             action?.Invoke();
         }
 
-        public CinemachineVirtualCamera GetOtherCamera(int index)
+        public CinemachineVirtualCamera GetCamera(int index)
         {
-            return otherCameras[index];
+            return cameras[index];
         }
     }
 }

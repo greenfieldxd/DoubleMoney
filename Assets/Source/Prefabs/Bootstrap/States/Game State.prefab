@@ -400,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2503651016629764794, guid: 074ea44d24cb53943850e453db01c7fe,
     type: 3}
-  yCardOffset: 0.05
+  yCardOffset: 0.09
 --- !u!1 &6057303008366339257
 GameObject:
   m_ObjectHideFlags: 0

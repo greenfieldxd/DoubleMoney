@@ -18,7 +18,7 @@ MonoBehaviour:
   maxValue: 3
   needRoundUp: 0
   <CardType>k__BackingField: 6
-  <CardColor>k__BackingField: {r: 0.85882354, g: 0.55411065, b: 0.14117645, a: 1}
+  <CardColor>k__BackingField: {r: 0.9716981, g: 0.6688878, b: 0.26125845, a: 1}
   <StringBeforeValue>k__BackingField: +
   <StringAfterValue>k__BackingField: ' moves'
   <UnlockAfterWinsCount>k__BackingField: 15

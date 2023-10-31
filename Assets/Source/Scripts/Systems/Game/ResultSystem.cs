@@ -52,6 +52,7 @@ namespace Source.Scripts.Systems.Game
             if (victory)
             {
                 player.winsCount++;
+                player.planeMatIndex++;
                 player.Money += game.MyMoney + game.OpponentMoney;
                 player.RecordMoney += game.MyMoney + game.OpponentMoney;
 

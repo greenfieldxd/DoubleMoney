@@ -43,3 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f128d3641d24c62a73e405850dc4cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMoneyTag: SceneMoney
+  moneyProgressions:
+  - prefab: {fileID: 8150436198709252249, guid: 44d5715d485d9cf41bee7ab52cb2fe40,
+      type: 3}
+    neededMoney: 0
+    camDistance: 10
+  - prefab: {fileID: 8150436198709252249, guid: c0e316def00ed6a4180a31cef0192954,
+      type: 3}
+    neededMoney: 100
+    camDistance: 10
+  - prefab: {fileID: 8150436198709252249, guid: 0b00968d0dde78248839f076d7164e3c,
+      type: 3}
+    neededMoney: 1000
+    camDistance: 10

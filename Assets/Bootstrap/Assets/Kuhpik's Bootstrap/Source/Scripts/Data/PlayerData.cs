@@ -19,6 +19,7 @@ namespace Kuhpik
         public List<int> CardBackList;
 
         public int winsCount;
+        public int planeMatIndex;
         
         [SerializeField] private int money;
         [SerializeField] private int recordMoney;
