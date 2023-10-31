@@ -12,38 +12,31 @@ namespace Source.Scripts.Systems.Game
     public class TableMoneySystem : GameSystem
     {
         [SerializeField] private MoneyComponent moneyPrefab;
-
-        private float _moneyValue;
         
         public override void OnInit()
         {
-            Supyrb.Signals.Get<AddTableMoneySignal>().AddListener(AddTableMoney);
-            AddTableMoney();
+            Supyrb.Signals.Get<AddTableMoneySignal>().AddListener(ChangeTableMoney);
+            ChangeTableMoney();
         }
 
-        private void AddTableMoney()
+        private void ChangeTableMoney()
         {
-            Money(TurnType.My);
-            Money(TurnType.Opponent);
+            var myValue =  (int)(game.MyMoney / (float)game.startMoney);
+            var opponentValue = (int)(game.OpponentMoney / (float)game.startMoney);
+
+            ChangeStack(TurnType.My, myValue);
+            ChangeStack(TurnType.Opponent, opponentValue);
         }
-        
-        private void Money(TurnType turnType)
+
+        private void ChangeStack(TurnType turnType, int stackValue)
         {
             var stack = game.table.DuelistContainers.First(x => x.turnType == turnType).moneyStack;
-            
-            if (turnType == TurnType.My) _moneyValue =  game.MyMoney / (float)game.startMoney;
-            else if (turnType == TurnType.Opponent) _moneyValue = game.OpponentMoney / (float)game.startMoney;
+            var delta = stack.ItemsCount - stackValue;
+            var isAdd = stack.ItemsCount < stackValue;
 
-            var delta = Mathf.Abs(stack.ItemsCount - _moneyValue);
-            var isAdd = stack.ItemsCount < _moneyValue;
-            
-            Debug.Log("Money value: " + _moneyValue);
-            Debug.Log("Delta: " + delta);
-            Debug.Log("IsAdd: " + isAdd);
-            
-            if (Math.Abs(delta) < 1) return;
+            if (Math.Abs(delta) == 0) return;
 
-            for (int i = 0; i < delta; i++)
+            for (int i = 0; i < Math.Abs(delta); i++)
             {
                 if (isAdd)
                 {

@@ -54,8 +54,13 @@ namespace Source.Scripts.Systems.Game
                 player.winsCount++;
                 player.Money += game.MyMoney + game.OpponentMoney;
                 player.RecordMoney += game.MyMoney + game.OpponentMoney;
-                OtherExtensions.SaveGame(player);
 
+                foreach (var effect in game.table.WinEffects)
+                {
+                    effect.Play();
+                }
+                
+                OtherExtensions.SaveGame(player);
                 YandexSDK.SetLB(YandexData());
             }
 

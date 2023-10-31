@@ -12,6 +12,7 @@ namespace Source.Scripts.Components
         [field:SerializeField] public Transform DeckPosition { get; private set; }
         [field:SerializeField] public Transform BoardPosition { get; private set; }
         [field:SerializeField] public DuelistObjects[] DuelistContainers { get; private set; }
+        [field:SerializeField] public ParticleSystem[] WinEffects { get; private set; }
 
         [Button]
         public void ClearBoard()
