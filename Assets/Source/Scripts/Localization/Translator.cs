@@ -29,6 +29,9 @@ public class Translator : MonoBehaviour
             "Open",
             "your move",
             "opponent move",
+            "YOU WIN!",
+            "YOU LOSE!",
+            "your earnings:",
         },
         #endregion
 
@@ -44,13 +47,16 @@ public class Translator : MonoBehaviour
             "Ножницы",
             "Бумага",
             "Случайно",
-            "Меню",
+            "Меню", // 10
             "Хотите купить слот для новой рубашки?",
             "Купить",
             "Хотите открыть новую рубашку за просмотр рекламы?",
             "Открыть",
             "твой ход",
             "ход противника",
+            "ПОБЕДА!",
+            "ПОРАЖЕНИЕ!",
+            "твоя награда:",
         },
         #endregion
     };

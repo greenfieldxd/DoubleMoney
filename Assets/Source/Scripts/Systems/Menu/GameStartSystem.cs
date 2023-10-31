@@ -10,7 +10,7 @@ public class GameStartSystem : GameSystemWithScreen<MenuUIScreen>
     void OnStartGame()
     {
         game.AudioSystem.CreateSound(0);
-        //game.AudioSystem.CreateMusic(1);
+        game.AudioSystem.CreateMusic(1);
 
         Bootstrap.Instance.ChangeGameState(GameStateID.Game);
         CameraController.Instance.SwitchCameraWithDelay(0);

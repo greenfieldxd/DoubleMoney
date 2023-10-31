@@ -44,7 +44,10 @@ namespace Source.Scripts.Systems.Game
                                 hand.IsMoving = false;
                             });
                         }, hand.StartPosition);
+
+                        game.AudioSystem.CreateSound(2);
                     });
+                    game.AudioSystem.CreateSound(3);
                 }));
             });
 

@@ -45,5 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioList:
   - {fileID: 3726466935014699306, guid: 23634553e1ef7054fb79ebdba3778664, type: 3}
+  - {fileID: 3726466935014699306, guid: 5322088474a7e7a4c9ca5f0ea8d1909d, type: 3}
+  - {fileID: 3726466935014699306, guid: 0fc05445f51aad54eab4487dcf30da38, type: 3}
+  - {fileID: 3726466935014699306, guid: d81df7d6777bd43438c450c34f3daff9, type: 3}
+  - {fileID: 3726466935014699306, guid: a6c63973d1b6eea41a4d7296d8ca4aaf, type: 3}
   audioMixer: {fileID: 24300002, guid: ea43140ebace6e54693dc106d48d7ce8, type: 2}
   musicSource: {fileID: 0}

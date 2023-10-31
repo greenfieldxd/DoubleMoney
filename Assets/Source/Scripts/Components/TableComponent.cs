@@ -46,6 +46,7 @@ namespace Source.Scripts.Components
             public StackComponent moneyStack;
             public TextMeshProUGUI moneyText;
             public Transform handMiniGamePos;
+            public Transform resultPoint;
         }
     }
 }

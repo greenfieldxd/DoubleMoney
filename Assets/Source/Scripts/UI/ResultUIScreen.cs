@@ -1,6 +1,4 @@
-﻿using System;
-using DG.Tweening;
-using Kuhpik;
+﻿using Kuhpik;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -10,34 +8,18 @@ namespace Source.Scripts.UI
 {
     public class ResultUIScreen : UIScreen
     {
-        [SerializeField] private GameObject window;
-        [SerializeField] [BoxGroup("Animation")] float animDuration = 0.2f;
+        [SerializeField, BoxGroup("GameObject")] GameObject resultPanel;
+        [SerializeField, BoxGroup("GameObject")] GameObject winPanel;
+        [SerializeField, BoxGroup("GameObject")] GameObject losePanel;
 
-        public event Action OnScreenOpened;
-        
-        public override void Subscribe()
-        {
-            Hide(false);
-        }
+        [SerializeField, BoxGroup("Button")] Button homeButton;
 
-        public void Show()
-        {
-            OnScreenOpened?.Invoke();
-            Open();
-            window.transform.localScale = Vector3.zero;
-            DOTween.Kill(window);
-            window.gameObject.SetActive(true);
-            window.transform.DOScale(Vector3.one, animDuration).SetUpdate(true);
-        }
+        [SerializeField, BoxGroup("Text")] TMP_Text reward;
 
-        public void Hide(bool needAnim = true, Action callback = null)
-        {
-            DOTween.Kill(window);
-            window.transform.DOScale(Vector3.zero,needAnim ? animDuration : 0).OnComplete(() =>
-                {
-                    Close();
-                    callback?.Invoke();
-                });
-        }
+        public GameObject ResultPanel => resultPanel;
+        public GameObject WinPanel => winPanel;
+        public GameObject LosePanel => losePanel;
+        public Button HomeButton => homeButton;
+        public TMP_Text Reward => reward;
     }
 }

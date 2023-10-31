@@ -92,3 +92,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b935836e67c4f2eb3f5fc7cb6f6099e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comparisonTime: 0.75
+  resultDelay: 0.25

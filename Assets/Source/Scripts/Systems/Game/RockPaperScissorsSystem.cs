@@ -63,6 +63,8 @@ namespace Source.Scripts.Systems.Game
             var haveWinner = WhoWin() != TurnType.None;
             
             StartCoroutine(BackHands(0.5f, haveWinner));
+
+            game.AudioSystem.CreateSound(0);
         }
 
         private IEnumerator BackHands(float delay, bool haveWinner)
