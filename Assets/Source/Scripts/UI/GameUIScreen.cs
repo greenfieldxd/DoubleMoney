@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using Kuhpik;
+using NaughtyAttributes;
 using Source.Scripts.Enums;
 using Source.Scripts.Extensions;
 using TMPro;
@@ -19,8 +20,9 @@ namespace Source.Scripts.UI
         [field:SerializeField] public GameObject ButtonsHolder { get; private set; }
         [field:SerializeField] public Button SelectRandom { get; private set; }
         [field:SerializeField] public RockPaperScissorsButton[] RockPaperScissorsButtons { get; private set; }
-
-
+        [field:SerializeField] public GameObject TutorHand { get; private set; }
+        [field:SerializeField] public GameObject TutorTakeCard { get; private set; }
+        
         public void UpdateTurnHolder(TurnType type)
         {
             switch (type)

@@ -33,7 +33,8 @@ public class Translator : MonoBehaviour
             "YOU LOSE!",
             "your earnings:",
             "moves", //20
-            "steal"
+            "steal",
+            "take the card"
         },
         #endregion
 
@@ -60,7 +61,8 @@ public class Translator : MonoBehaviour
             "ПОРАЖЕНИЕ!",
             "твоя награда:",
             "хода", //20
-            "украсть"
+            "украсть",
+            "возьми карту"
         },
         #endregion
     };

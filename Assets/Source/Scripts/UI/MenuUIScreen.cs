@@ -24,6 +24,8 @@ public class MenuUIScreen : UIScreen
     [SerializeField, BoxGroup("Image")] Image languageImage;
     [SerializeField, BoxGroup("Image")] List<Image> cardBackImageList;
 
+    [SerializeField, BoxGroup("Tutor")] GameObject tutorHand;
+    
     [SerializeField, BoxGroup("Text")] TMP_Text moneyText;
 
     [SerializeField, BoxGroup("Sprite")] List<Sprite> languageSpriteList;
@@ -42,6 +44,7 @@ public class MenuUIScreen : UIScreen
     public List<Image> CardBackImageList => cardBackImageList;
     public TMP_Text MoneyText => moneyText;
     public List<Sprite> LanguageSpriteList => languageSpriteList;
+    public GameObject TutorHand => tutorHand;
 
     public void SetPanelActive(int index)
     {

@@ -5,6 +5,7 @@ using DG.Tweening;
 using Kuhpik;
 using Source.Scripts.Components;
 using Source.Scripts.Enums;
+using Source.Scripts.Signals;
 using Source.Scripts.UI;
 using UnityEngine;
 
@@ -62,6 +63,7 @@ namespace Source.Scripts.Systems.Game
 
             var haveWinner = WhoWin() != TurnType.None;
             
+            Supyrb.Signals.Get<MiniGameSignal>().Dispatch(haveWinner);
             StartCoroutine(BackHands(0.5f, haveWinner));
 
             game.AudioSystem.CreateSound(0);
