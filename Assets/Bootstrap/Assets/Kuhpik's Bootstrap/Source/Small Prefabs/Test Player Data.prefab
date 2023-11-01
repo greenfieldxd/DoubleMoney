@@ -50,6 +50,7 @@ MonoBehaviour:
     LanguageIndex: 0
     CardBackIndex: 0
     CardBackList: 
-    winsCount: 5
+    winsCount: 20
+    planeMatIndex: 0
     money: 0
     recordMoney: 0

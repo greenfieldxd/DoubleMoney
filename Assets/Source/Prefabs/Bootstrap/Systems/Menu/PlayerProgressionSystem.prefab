@@ -69,7 +69,7 @@ MonoBehaviour:
       type: 3}
     neededMoney: 100000
     camDistance: 10
-  - prefab: {fileID: 5932074780652485820, guid: 897ea6b2d75f2504dbb7a9fa16b56877,
+  - prefab: {fileID: 5932074780652485820, guid: ca4618469a6a7984d92f3bd557cd59ce,
       type: 3}
     neededMoney: 500000
     camDistance: 15

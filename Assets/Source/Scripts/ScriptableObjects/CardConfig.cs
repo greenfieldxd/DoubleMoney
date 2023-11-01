@@ -16,6 +16,8 @@ namespace Source.Scripts.ScriptableObjects
         [SerializeField] private float valueModifierMax;
         [SerializeField] private float maxValue;
         [SerializeField] private bool needRoundUp;
+        [SerializeField] private bool needTranslate;
+        [SerializeField] [ShowIf("needTranslate")] private int translateId;
         
         [field:SerializeField] public CardType CardType { get; private set; }
         [field:SerializeField] public Color CardColor { get; private set; }
@@ -33,6 +35,9 @@ namespace Source.Scripts.ScriptableObjects
       
         public string GetCardText(int val)
         {
+            if (needTranslate && StringBeforeValue.Length > 2) StringBeforeValue = Translator.GetText(translateId);
+            if (needTranslate && StringAfterValue.Length > 2) StringAfterValue = Translator.GetText(translateId);
+            
             return $"{StringBeforeValue}{val}{StringAfterValue}";     
         }
         

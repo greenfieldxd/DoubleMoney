@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0788781af7dc194baffd955ed6c8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.01, z: -0.08}
+  offset: {x: 0, y: 0.01, z: -0.06}
   rotation: {x: 0, y: -90, z: 7}
   maxHorizontalCount: 1
   maxForwardCount: 30
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0788781af7dc194baffd955ed6c8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.01, z: 0.08}
+  offset: {x: 0, y: 0.01, z: 0.06}
   rotation: {x: 0, y: -90, z: -7}
   maxHorizontalCount: 1
   maxForwardCount: 30

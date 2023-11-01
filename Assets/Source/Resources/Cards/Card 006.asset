@@ -17,6 +17,8 @@ MonoBehaviour:
   valueModifierMax: 0.4
   maxValue: 80
   needRoundUp: 1
+  needTranslate: 1
+  translateId: 21
   <CardType>k__BackingField: 3
   <CardColor>k__BackingField: {r: 0.85882354, g: 0.14117648, b: 0.14117648, a: 1}
   <StringBeforeValue>k__BackingField: 'steal '

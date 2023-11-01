@@ -32,6 +32,8 @@ public class Translator : MonoBehaviour
             "YOU WIN!",
             "YOU LOSE!",
             "your earnings:",
+            "moves", //20
+            "steal"
         },
         #endregion
 
@@ -57,6 +59,8 @@ public class Translator : MonoBehaviour
             "ПОБЕДА!",
             "ПОРАЖЕНИЕ!",
             "твоя награда:",
+            "хода", //20
+            "украсть"
         },
         #endregion
     };

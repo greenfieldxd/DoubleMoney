@@ -31,6 +31,8 @@ namespace Source.Scripts.Systems.Game
 
         private IEnumerator CreateDeck()
         {
+            yield return new WaitForSeconds(1f);
+
             var typeIndex = 0;
             var types = (CardType[]) Enum.GetValues(typeof(CardType));
             var rnd = new Random();
