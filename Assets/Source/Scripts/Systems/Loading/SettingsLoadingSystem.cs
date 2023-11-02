@@ -16,9 +16,9 @@ public class SettingsLoadingSystem : GameSystem
     }
     void GameLaunch()
     {
-        game.MainCamera = FindObjectOfType<Camera>();
+        game.mainCamera = FindObjectOfType<Camera>();
         //game.MainCamera.orthographicSize = orthographicSize;
-        game.MainCamera.fieldOfView = fieldOfView;
+        game.mainCamera.fieldOfView = fieldOfView;
 
         //screen.VersionNumber.text = "" + Application.version;
 

@@ -17,7 +17,7 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
 
     public override void OnInit()
     {
-        game.AudioSystem = this;
+        game.audioSystem = this;
 
         screen.SoundButton.onClick.AddListener(OnUpdateSound);
 

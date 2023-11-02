@@ -3,6 +3,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Source.Scripts.Data;
 
 namespace Kuhpik
 {
@@ -17,8 +18,8 @@ namespace Kuhpik
         public int languageIndex;
         public int winsCount;
         public int planeMatIndex;
-        public int cardBackIndex;
-        public List<int> cardBackList;
+        
+        public CardBackData cardBackData = new CardBackData();
 
         [SerializeField] private int money;
         [SerializeField] private int recordMoney;

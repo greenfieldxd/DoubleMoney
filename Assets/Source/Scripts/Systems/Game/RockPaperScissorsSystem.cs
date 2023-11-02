@@ -66,7 +66,7 @@ namespace Source.Scripts.Systems.Game
             Supyrb.Signals.Get<MiniGameSignal>().Dispatch(haveWinner);
             StartCoroutine(BackHands(0.5f, haveWinner));
 
-            game.AudioSystem.CreateSound(0);
+            game.audioSystem.CreateSound(0);
         }
 
         private IEnumerator BackHands(float delay, bool haveWinner)

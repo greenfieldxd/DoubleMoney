@@ -56,7 +56,7 @@ namespace Source.Scripts.Systems.Game
                 
                 rnd.Shuffle(configsShuffle);
                 var card = Instantiate(cardPrefab, game.table.DeckPosition.position + new Vector3(-6.5f, 0, 0), Quaternion.Euler(0, 0, 0));
-                card.Init(configsShuffle.First(), game.CardBackList[player.cardBackIndex].Sprite);
+                card.Init(configsShuffle.First(), game.cardBackList[player.cardBackData.cardBackIndex].Sprite);
                 AnimationExtension.JumpAnim(card.transform, game.table.DeckPosition, new Vector3(0, _yCardPos, 0), 1f, new Vector3(0,0, 180));
                 game.cardsInDeck.Push(card);
 

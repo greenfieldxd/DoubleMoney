@@ -45,9 +45,9 @@ namespace Source.Scripts.Systems.Game
                             });
                         }, hand.StartPosition);
 
-                        game.AudioSystem.CreateSound(2);
+                        game.audioSystem.CreateSound(2);
                     });
-                    game.AudioSystem.CreateSound(3);
+                    game.audioSystem.CreateSound(3);
                 }));
             });
 
