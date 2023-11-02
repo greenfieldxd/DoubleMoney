@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Source.Scripts;
 using Source.Scripts.Components;
-using Source.Scripts.Data;
 using Source.Scripts.Enums;
 using Source.Scripts.ScriptableObjects;
 
@@ -17,9 +16,9 @@ namespace Kuhpik
     [Serializable]
     public class GameData
     {
-        public Camera mainCamera;
-        public AudioLoadingSystem audioSystem;
-        public List<CardBackConfig> cardBackList;
+        public Camera MainCamera;
+        public AudioLoadingSystem AudioSystem;
+        public List<CardBackConfig> CardBackList;
 
         public DuelConfig currentDuelConfig;
         public int movesCount;

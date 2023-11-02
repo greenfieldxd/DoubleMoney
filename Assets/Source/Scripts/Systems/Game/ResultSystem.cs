@@ -68,8 +68,8 @@ namespace Source.Scripts.Systems.Game
 
             yield return new WaitForSeconds(resultDelay);
 
-            game.audioSystem.CreateMusic(-1);
-            game.audioSystem.CreateSound(4);
+            game.AudioSystem.CreateMusic(-1);
+            game.AudioSystem.CreateSound(4);
 
             screen.ResultPanel.SetActive(true);
 

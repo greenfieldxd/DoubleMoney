@@ -3,7 +3,6 @@ using System.Collections;
 using System.Globalization;
 using DG.Tweening;
 using Kuhpik;
-using Source.Scripts.Data;
 using TMPro;
 using UnityEngine;
 
@@ -27,20 +26,9 @@ namespace Source.Scripts.Extensions
         {
             Bootstrap.Instance.SaveGame();
 
-            var @string1 = JsonUtility.ToJson(data);
-            YandexSDK.SaveData(@string1);
-
-            var cardData = data.cardBackData;
-            var @string2 = JsonUtility.ToJson(cardData);
-            YandexSDK.SaveData(@string2);
-        }
-
-        public static void SaveCardBackData(CardBackData data)
-        {
             var @string = JsonUtility.ToJson(data);
             YandexSDK.SaveData(@string);
         }
-        
         public static string YandexAdData()
         {
             YandexData data = new YandexData()
