@@ -12,15 +12,14 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
-        public bool IsFirstLaunch;
-        public bool IsSoundOff;
-        public int LanguageIndex;
-        public int CardBackIndex;
-        public List<int> CardBackList;
-
+        public bool isFirstLaunch;
+        public bool isSoundOff;
+        public int languageIndex;
         public int winsCount;
         public int planeMatIndex;
-        
+        public int cardBackIndex;
+        public List<int> cardBackList;
+
         [SerializeField] private int money;
         [SerializeField] private int recordMoney;
         

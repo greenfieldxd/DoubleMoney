@@ -27,7 +27,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
     }
     public void YandexRewardedEnd()
     {
-        player.CardBackList[cardBackIndex] = 2;
+        player.cardBackList[cardBackIndex] = 2;
         OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
@@ -78,9 +78,9 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
     {
         int index = int.Parse(button.name);
 
-        if (player.CardBackList[index] != 2) return;
+        if (player.cardBackList[index] != 2) return;
 
-        player.CardBackIndex = index;
+        player.cardBackIndex = index;
         OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
@@ -93,7 +93,7 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
         int price = game.CardBackList[cardBackIndex].Price;
         player.Money -= price;
 
-        player.CardBackList[cardBackIndex] = 1;
+        player.cardBackList[cardBackIndex] = 1;
         OtherExtensions.SaveGame(player);
 
         UpdateCardBack();
@@ -108,16 +108,16 @@ public class CardBackSystem : GameSystemWithScreen<MenuUIScreen>
 
         foreach (var image in screen.CardBackImageList)
         {
-            image.sprite = game.CardBackList[player.CardBackIndex].Sprite;
+            image.sprite = game.CardBackList[player.cardBackIndex].Sprite;
         }
 
         for (int i = 0; i < cardBackList.Count; i++)
         {
             CardBackComponent cardBack = cardBackList[i];
-            int status = player.CardBackList[i];
-            int statusPrevious = player.CardBackList[Mathf.Clamp(i - 1, 0, cardBackList.Count)];
+            int status = player.cardBackList[i];
+            int statusPrevious = player.cardBackList[Mathf.Clamp(i - 1, 0, cardBackList.Count)];
 
-            cardBack.ActivePanel.SetActive(player.CardBackIndex == i);
+            cardBack.ActivePanel.SetActive(player.cardBackIndex == i);
             cardBack.ClosePanel.SetActive(statusPrevious <= 0);
 
             cardBack.BuyButton.gameObject.SetActive(status == 0);

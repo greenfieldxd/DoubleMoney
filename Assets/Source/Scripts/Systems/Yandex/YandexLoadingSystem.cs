@@ -18,11 +18,11 @@ public class YandexLoadingSystem : GameSystemWithScreen<YandexUIScreen>
         {
             PlayerData loadingData = JsonUtility.FromJson<PlayerData>(data);
 
-            player.IsFirstLaunch = loadingData.IsFirstLaunch;
-            player.LanguageIndex = loadingData.LanguageIndex;
-            player.IsSoundOff = loadingData.IsSoundOff;
-            player.CardBackIndex = loadingData.CardBackIndex;
-            player.CardBackList = loadingData.CardBackList;
+            player.isFirstLaunch = loadingData.isFirstLaunch;
+            player.languageIndex = loadingData.languageIndex;
+            player.isSoundOff = loadingData.isSoundOff;
+            player.cardBackIndex = loadingData.cardBackIndex;
+            player.cardBackList = loadingData.cardBackList;
             player.winsCount = loadingData.winsCount;
             player.planeMatIndex = loadingData.planeMatIndex;
             
@@ -39,7 +39,7 @@ public class YandexLoadingSystem : GameSystemWithScreen<YandexUIScreen>
 
         Bootstrap.Instance.ChangeGameState(GameStateID.Loading);
     }
-    string YandexData()
+    private string YandexData()
     {
         YandexData data = new YandexData()
         {

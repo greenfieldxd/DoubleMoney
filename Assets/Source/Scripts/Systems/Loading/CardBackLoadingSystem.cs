@@ -9,7 +9,7 @@ public class CardBackLoadingSystem : GameSystem
     [SerializeField, BoxGroup("Settings")] string path;
 
     [SerializeField, BoxGroup("Testing")] int cardBackIndex;
-    [SerializeField, Button("Card Back Select")] void ButtonAction() => player.CardBackIndex = cardBackIndex;
+    [SerializeField, Button("Card Back Select")] void ButtonAction() => player.cardBackIndex = cardBackIndex;
 
     public override void OnInit()
     {
@@ -29,20 +29,20 @@ public class CardBackLoadingSystem : GameSystem
     }
     void UpdateData()
     {
-        if (player.CardBackList == null)
+        if (player.cardBackList == null)
         {
-            player.CardBackList = new List<int>();
-            player.CardBackList.Add(2);
+            player.cardBackList = new List<int>();
+            player.cardBackList.Add(2);
 
-            player.CardBackIndex = 0;
+            player.cardBackIndex = 0;
         }
 
-        int count = player.CardBackList.Count;
+        int count = player.cardBackList.Count;
         int maxCount = game.CardBackList.Count;
 
         for (int i = count; i < maxCount; i++)
         {
-            player.CardBackList.Add(0);
+            player.cardBackList.Add(0);
         }
 
         OtherExtensions.SaveGame(player);

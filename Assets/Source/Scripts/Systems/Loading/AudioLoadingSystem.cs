@@ -21,13 +21,13 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
 
         screen.SoundButton.onClick.AddListener(OnUpdateSound);
 
-        UpdateAudioMixer(player.IsSoundOff);
+        UpdateAudioMixer(player.isSoundOff);
     }
     public void UpdateSound()
     {
-        player.IsSoundOff = !player.IsSoundOff;
+        player.isSoundOff = !player.isSoundOff;
 
-        UpdateAudioMixer(player.IsSoundOff);
+        UpdateAudioMixer(player.isSoundOff);
         OtherExtensions.SaveGame(player);
     }
     public void CreateSound(int index, float time = 1f)
@@ -45,13 +45,13 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
     }
     public void YandexInterstitialStart()
     {
-        if (player.IsSoundOff) return;
+        if (player.isSoundOff) return;
 
         UpdateAudioMixer(true);
     }
     public void YandexInterstitialEnd()
     {
-        if (player.IsSoundOff) return;
+        if (player.isSoundOff) return;
 
         UpdateAudioMixer(false);
     }
@@ -68,7 +68,7 @@ public class AudioLoadingSystem : GameSystemWithScreen<SoundUIScreen>
         audioMixer.audioMixer.SetFloat("Sound", isStatus ? -80 : 0);
         audioMixer.audioMixer.SetFloat("UI", isStatus ? -80 : 0);
 
-        screen.SoundImage.sprite = screen.SoundSpriteList[player.IsSoundOff ? 0 : 1];
+        screen.SoundImage.sprite = screen.SoundSpriteList[player.isSoundOff ? 0 : 1];
         screen.SoundImage.SetNativeSize();
     }
 }

@@ -22,10 +22,10 @@ public class SettingsLoadingSystem : GameSystem
 
         //screen.VersionNumber.text = "" + Application.version;
 
-        if (player.IsFirstLaunch) return;
+        if (player.isFirstLaunch) return;
 
-        player.IsFirstLaunch = true;
-        player.LanguageIndex = -1;
+        player.isFirstLaunch = true;
+        player.languageIndex = -1;
 
         OtherExtensions.SaveGame(player);
     }

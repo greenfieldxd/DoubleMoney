@@ -11,10 +11,10 @@ public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
     }
     void OnLanguageChange()
     {
-        player.LanguageIndex++;
+        player.languageIndex++;
 
-        if (player.LanguageIndex > screen.LanguageSpriteList.Count - 1)
-            player.LanguageIndex = 0;
+        if (player.languageIndex > screen.LanguageSpriteList.Count - 1)
+            player.languageIndex = 0;
 
         UpdateLanguage();
         game.AudioSystem.CreateSound(0);
@@ -24,19 +24,19 @@ public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
     }
     void SelectLanguage()
     {
-        if (player.LanguageIndex == -1)
+        if (player.languageIndex == -1)
         {
             string language = YandexSDK.GetLanguage();
 
             switch (language)
             {
                 default:
-                    player.LanguageIndex = 0;
+                    player.languageIndex = 0;
 
                     break;
 
                 case "ru":
-                    player.LanguageIndex = 1;
+                    player.languageIndex = 1;
 
                     break;
             }
@@ -46,8 +46,8 @@ public class LanguageSelectSystem : GameSystemWithScreen<MenuUIScreen>
     }
     void UpdateLanguage()
     {
-        Translator.SelectLanguage(player.LanguageIndex);
+        Translator.SelectLanguage(player.languageIndex);
 
-        screen.LanguageImage.sprite = screen.LanguageSpriteList[player.LanguageIndex];
+        screen.LanguageImage.sprite = screen.LanguageSpriteList[player.languageIndex];
     }
 }
