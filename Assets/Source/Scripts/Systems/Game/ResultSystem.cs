@@ -52,9 +52,10 @@ namespace Source.Scripts.Systems.Game
             if (victory)
             {
                 player.winsCount++;
-                player.planeMatIndex++;
                 player.Money += game.MyMoney + game.OpponentMoney;
                 player.RecordMoney += game.MyMoney + game.OpponentMoney;
+                
+                if (player.winsCount % 5 == 0) player.planeMatIndex++;
 
                 foreach (var effect in game.table.WinEffects)
                 {
