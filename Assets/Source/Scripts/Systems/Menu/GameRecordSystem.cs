@@ -19,7 +19,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
         {
             for (int i = 0; i < leaderboardData.entries.Length; i++)
             {
-                if (i >= screen.RecordList.Count) break;
+                if (i >= screen.RecordList.Count - 1) break;
 
                 screen.RecordList[i].Value.text = "$" + OtherExtensions.FormatNumberWithCommas(leaderboardData.entries[i].score);
 
