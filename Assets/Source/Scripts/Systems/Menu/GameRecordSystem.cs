@@ -9,7 +9,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
     public override void OnInit()
     {
         YandexSDK.GetLB(YandexData());
-        screen.RecordList.Last().Value.text = "$" + OtherExtensions.FormatNumberWithCommas(player.RecordMoney);
+        screen.RecordList.Last().Value.text = OtherExtensions.FormatNumberWithCommas(player.RecordMoney) + "$";
     }
     public void YandexLeaderboardData(string data)
     {
@@ -21,7 +21,7 @@ public class GameRecordSystem : GameSystemWithScreen<MenuUIScreen>
             {
                 if (i >= screen.RecordList.Count - 1) break;
 
-                screen.RecordList[i].Value.text = "$" + OtherExtensions.FormatNumberWithCommas(leaderboardData.entries[i].score);
+                screen.RecordList[i].Value.text = OtherExtensions.FormatNumberWithCommas(leaderboardData.entries[i].score) + "$";
 
                 string name = leaderboardData.entries[i].player.publicName;
                 screen.RecordList[i].PlayerName.text = name == "" ? Translator.GetText(3) : name;

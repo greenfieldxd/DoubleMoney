@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardType: 1
   roundCount: 1
-  neededWins: 2
-  startMoneyCount: 50
+  neededWins: 1

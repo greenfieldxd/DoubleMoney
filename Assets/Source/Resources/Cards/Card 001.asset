@@ -15,8 +15,10 @@ MonoBehaviour:
   value: 5
   valueModifierMin: 0.1
   valueModifierMax: 15
-  maxValue: 1000
+  maxValue: 3000
   needRoundUp: 1
+  needTranslate: 0
+  translateId: 0
   <CardType>k__BackingField: 0
   <CardColor>k__BackingField: {r: 0.14173192, g: 0.27711976, b: 0.8584906, a: 1}
   <StringBeforeValue>k__BackingField: +

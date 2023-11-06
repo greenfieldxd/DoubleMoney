@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: DuelConfig 010
   m_EditorClassIdentifier: 
   boardType: 2
-  roundCount: 2
-  neededWins: 15
-  startMoneyCount: 125
+  roundCount: 3
+  neededWins: 10
