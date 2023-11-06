@@ -22,7 +22,7 @@ namespace Source.Scripts.Systems.Menu
 
         private void LoadCurrentProgression()
         {
-            var progression = moneyProgressions.Where(x => player.Money >= x.neededMoney).OrderBy(x => x.neededMoney).Last();
+            var progression = moneyProgressions.Where(x => player.RecordMoney >= x.neededMoney).OrderBy(x => x.neededMoney).Last();
             var cam = CameraController.Instance.GetCamera(2);
             CinemachineComponentBase componentBase = cam.GetCinemachineComponent(CinemachineCore.Stage.Body);
             
